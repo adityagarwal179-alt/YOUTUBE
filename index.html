@@ -55,8 +55,10 @@
 <div class="container">
     <h1>🚀 MASTER STUDY VAULT 2026</h1>
 
+    <!-- D.PHARMA SECTION -->
     <div class="section-header pharma-bg">D.PHARMA 1st YEAR (9:00 AM - 12:30 PM)</div>
 
+    <!-- CHEMISTRY CARD -->
     <div class="card">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> CHEMISTRY</div>
@@ -76,24 +78,7 @@
         <textarea placeholder="Write important Chemistry questions here..."></textarea>
     </div>
 
-    <div class="card">
-        <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> PHARMACEUTICS</div>
-            <div class="exam-date-box">28-05-2026<br>THURSDAY</div>
-        </div>
-        <div class="url-updater">
-            <input type="text" placeholder="Paste YouTube Link..." id="in-cut">
-            <button onclick="changeVid('vid-cut', 'in-cut')">CHANGE VIDEO</button>
-        </div>
-        <div class="video-box" id="vid-cut">
-            <iframe src="https://www.youtube-nocookie.com/embed/pV5mpNwgvs0" allowfullscreen></iframe>
-        </div>
-        <div class="file-manager">
-            <label class="upload-btn">➕ UPLOAD FILE <input type="file" onchange="upFile(this, 'gal-cut')"></label>
-            <div class="file-grid" id="gal-cut"></div>
-        </div>
-    </div>
-
+    <!-- HUMAN ANATOMY (HAP) CARD -->
     <div class="card">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> HUMAN ANATOMY (HAP)</div>
@@ -112,43 +97,8 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> PHARMACOGNOSY</div>
-            <div class="exam-date-box">03-06-2026<br>WEDNESDAY</div>
-        </div>
-        <div class="url-updater">
-            <input type="text" placeholder="Paste YouTube Link..." id="in-cog">
-            <button onclick="changeVid('vid-cog', 'in-cog')">CHANGE VIDEO</button>
-        </div>
-        <div class="video-box" id="vid-cog">
-            <iframe src="https://www.youtube-nocookie.com/embed/4ExDHCDL4n0" allowfullscreen></iframe>
-        </div>
-        <div class="file-manager">
-            <label class="upload-btn">➕ UPLOAD FILE <input type="file" onchange="upFile(this, 'gal-cog')"></label>
-            <div class="file-grid" id="gal-cog"></div>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> SOCIAL PHARMACY</div>
-            <div class="exam-date-box">05-06-2026<br>FRIDAY</div>
-        </div>
-        <div class="url-updater">
-            <input type="text" placeholder="Paste YouTube Link..." id="in-soc">
-            <button onclick="changeVid('vid-soc', 'in-soc')">CHANGE VIDEO</button>
-        </div>
-        <div class="video-box" id="vid-soc">
-            <iframe src="https://www.youtube-nocookie.com/embed/CZZ1XxYu9mc" allowfullscreen></iframe>
-        </div>
-        <div class="file-manager">
-            <label class="upload-btn">➕ UPLOAD FILE <input type="file" onchange="upFile(this, 'gal-soc')"></label>
-            <div class="file-grid" id="gal-soc"></div>
-        </div>
-    </div>
-
-
+    <!-- BCA SECTION (UNTOUCHED) -->
     <div class="section-header bca-bg">BCA 2nd SEMESTER (2:00 PM - 5:00 PM)</div>
 
     <div class="card">
@@ -264,7 +214,6 @@
             item.className = 'file-item';
             
             let preview = '';
-            // If it's an image, show thumbnail
             if (file.type.startsWith('image/')) {
                 preview = `<img src="${data}" onclick="window.open('${data}', '_blank')">`;
             } else if (file.type.startsWith('video/')) {
