@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Academic Vault 2026</title>
     <nav style="text-align: center; margin-bottom: 20px;">
-    <nav style="text-align: center; margin-bottom: 20px;">
-   <a href="datesheet.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1.2rem; text-transform: uppercase; display: inline-block; margin-right: 40px;">View Date Sheet</a>
-<a href="importanttopics.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1.2rem; text-transform: uppercase; display: inline-block;">View Important Topics</a>
-</nav>
+        <a href="datesheet.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1.2rem; text-transform: uppercase; display: inline-block; margin-right: 40px;">View Date Sheet</a>
+        <a href="importanttopics.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1.2rem; text-transform: uppercase; display: inline-block;">View Important Topics</a>
+    </nav>
     <style>
         :root { --pharma: #ff4d6d; --bca: #00f2ff; --bg: #050505; --card: #121212; --accent: #00ff00; }
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; line-height: 1.6; }
@@ -54,6 +53,9 @@
 
         .video-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 15px; overflow: hidden; margin-bottom: 20px; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: #444; font-style: italic; }
         iframe { width: 100%; height: 100%; border: none; }
+        
+        /* Expired State Styling */
+        .exam-expired { color: #ff3c3c !important; font-weight: bold; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* File Manager */
         .file-manager { background: #0a0a0a; padding: 15px; border-radius: 12px; border: 1px dashed #444; }
@@ -85,7 +87,7 @@
         </a>
     </div>
 
-    <div class="card">
+    <div class="card" data-date="2026-06-01" data-time="16:30">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> CHEMISTRY</div>
             <div class="exam-date-box">01-06-2026<br>MONDAY</div>
@@ -104,7 +106,7 @@
         <textarea placeholder="Write important Chemistry questions here..."></textarea>
     </div>
 
-    <div class="card">
+    <div class="card" data-date="2026-06-15" data-time="16:30">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> HUMAN ANATOMY (HAP)</div>
             <div class="exam-date-box">15-06-2026<br>MONDAY</div>
@@ -130,7 +132,7 @@
         </a>
     </div>
 
-    <div class="card">
+    <div class="card" data-date="2026-06-08" data-time="17:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> MCS201</div>
             <div class="exam-date-box">08-06-2026<br>MONDAY</div>
@@ -146,7 +148,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-date="2026-06-09" data-time="17:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> MCS202</div>
             <div class="exam-date-box">09-06-2026<br>TUESDAY</div>
@@ -162,7 +164,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-date="2026-06-10" data-time="17:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> MCS203</div>
             <div class="exam-date-box">10-06-2026<br>WEDNESDAY</div>
@@ -178,7 +180,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-date="2026-06-17" data-time="17:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> FEG02</div>
             <div class="exam-date-box">17-06-2026<br>WEDNESDAY</div>
@@ -194,7 +196,7 @@
         </div>
     </div>
 
-    <div class="card" style="border-color: var(--bca);">
+    <div class="card" style="border-color: var(--bca);" data-date="2026-06-20" data-time="12:30">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> BCS012</div>
             <div class="badge-container">
@@ -216,10 +218,55 @@
 </div>
 
 <script>
+    // AUTOMATIC TASK / EXAM EXPIRY CHECKER
+    function checkExamExpiry() {
+        const now = new Date();
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            const expiryDateStr = card.getAttribute('data-date');
+            const expiryTimeStr = card.getAttribute('data-time');
+
+            if (expiryDateStr && expiryTimeStr) {
+                // Parse date and time into a Date Object
+                const expiryDateTime = new Date(`${expiryDateStr}T${expiryTimeStr}:00`);
+
+                // Agar current time, expiry time se aage nikal gaya hai
+                if (now > expiryDateTime) {
+                    const videoBox = card.querySelector('.video-box');
+                    const checkbox = card.querySelector('input[type="checkbox"]');
+                    
+                    if (videoBox && !videoBox.classList.contains('exam-expired')) {
+                        // 1. Video hatayein aur status text add karein
+                        videoBox.innerHTML = "🏁 EXAM COMPLETED / TASK DONE";
+                        videoBox.classList.add('exam-expired');
+                        
+                        // 2. Checkbox ko auto-tick (Checked) mark karein
+                        if (checkbox) checkbox.checked = true;
+                    }
+                }
+            }
+        });
+    }
+
+    // Run when page loads
+    window.onload = function() {
+        checkExamExpiry();
+        // Check every 1 minute dynamically without page refresh
+        setInterval(checkExamExpiry, 60000); 
+    };
+
     // VIDEO CHANGER LOGIC
     function changeVid(boxId, inputId) {
-        const url = document.getElementById(inputId).value;
         const box = document.getElementById(boxId);
+        
+        // Agar exam khatam ho chuka hai toh naya video add nahi hone dega
+        if (box.classList.contains('exam-expired')) {
+            alert("This exam/task is already completed! Cannot change video.");
+            return;
+        }
+
+        const url = document.getElementById(inputId).value;
         let id = "";
         
         if (url.includes('v=')) id = url.split('v=')[1].split('&')[0];
