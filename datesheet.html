@@ -5,23 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Date Sheet</title>
     <style>
-        :root { --bg: #050505; --card: #121212; --accent: #00f2ff; }
+        :root { 
+            --bg: #050505; 
+            --card: #121212; 
+            --accent: #00f2ff; 
+            --expired: #ff3c3c;
+            --success: #00ff00;
+        }
         body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 20px; }
         .container { max-width: 900px; margin: 0 auto; }
-        h1 { text-align: center; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; color: #fff; }
-        table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 30px; }
+        
+        h1 { text-align: center; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; color: #fff; }
+        
+        /* Progress Bar Section Styling */
+        .progress-container {
+            background: var(--card);
+            border: 1px solid #222;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+        .progress-bar-bg {
+            width: 100%;
+            height: 12px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%; /* Dynamic */
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            box-shadow: 0 0 15px var(--accent);
+            transition: width 1s ease-in-out;
+        }
+
+        /* Table Styling */
+        table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 30px; border: 1px solid #222; }
         th, td { padding: 15px; text-align: left; border-bottom: 1px solid #222; }
-        th { background: #000; color: var(--accent); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
-        td { color: #ccc; font-size: 0.9rem; }
-        tr:hover { background: rgba(0,242,255,0.05); }
-        .back-link { display: block; text-align: center; color: var(--accent); text-decoration: none; font-weight: bold; margin-top: 20px; }
-        .back-link:hover { text-decoration: underline; }
+        th { background: #000; color: var(--accent); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; border-bottom: 2px solid #222; }
+        td { color: #ccc; font-size: 0.9rem; transition: all 0.3s ease; }
+        tr { transition: background 0.3s; }
+        tr:hover:not(.completed-row) { background: rgba(0,242,255,0.05); }
+        
+        /* Expired / Completed Row Styling */
+        .completed-row td {
+            text-decoration: line-through;
+            color: #444 !important;
+            border-bottom: 1px solid #151515;
+        }
+        .completed-row {
+            background: rgba(255, 60, 60, 0.02) !important;
+        }
+        .status-badge {
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            margin-left: 10px;
+            display: inline-block;
+            text-decoration: none !important;
+        }
+        .status-active { background: rgba(0, 242, 255, 0.1); color: var(--accent); }
+        .status-done { background: rgba(255, 60, 60, 0.1); color: var(--expired); text-decoration: none !important; display: inline-block; }
+
+        .back-link { display: block; text-align: center; color: var(--accent); text-decoration: none; font-weight: bold; margin-top: 20px; transition: 0.3s; }
+        .back-link:hover { text-decoration: underline; color: #fff; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Examination Date Sheet</h1>
-        <table>
+        
+        <div class="progress-container">
+            <div class="progress-header">
+                <span>Course Progress Status</span>
+                <span id="progress-text">0% Completed</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <table id="exam-table">
             <thead>
                 <tr>
                     <th>Date</th>
@@ -30,17 +108,80 @@
                     <th>Subject</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr><td>01-06-26</td><td>MONDAY</td><td>01:30 PM - 04:30 PM</td><td>CHEMISTRY</td></tr>
-                <tr><td>08-06-26</td><td>MONDAY</td><td>2:00 PM - 5:00 PM</td><td>MCS201</td></tr>
-                <tr><td>09-06-26</td><td>TUESDAY</td><td>2:00 PM - 5:00 PM</td><td>MCS202</td></tr>
-                <tr><td>10-06-26</td><td>WEDNESDAY</td><td>2:00 PM - 5:00 PM</td><td>MCS203</td></tr>
-                <tr><td>15-06-26</td><td>MONDAY</td><td>01:30 PM - 04:30 PM</td><td>H.A.P.</td></tr>
-                <tr><td>17-06-26</td><td>WEDNESDAY</td><td>2:00 PM - 5:00 PM</td><td>FEG02</td></tr>
-                <tr><td>20-06-26</td><td>SATURDAY</td><td>10:00 AM - 12:30 PM</td><td>BCS012</td></tr>
+            <tbody id="table-body">
+                <tr data-date="2026-06-01" data-endtime="16:30"><td>01-06-2026</td><td>MONDAY</td><td>01:30 PM - 04:30 PM</td><td>CHEMISTRY</td></tr>
+                <tr data-date="2026-06-08" data-endtime="17:00"><td>08-06-2026</td><td>MONDAY</td><td>02:00 PM - 05:00 PM</td><td>MCS201</td></tr>
+                <tr data-date="2026-06-09" data-endtime="17:00"><td>09-06-2026</td><td>TUESDAY</td><td>02:00 PM - 05:00 PM</td><td>MCS202</td></tr>
+                <tr data-date="2026-06-10" data-endtime="17:00"><td>10-06-2026</td><td>WEDNESDAY</td><td>02:00 PM - 05:00 PM</td><td>MCS203</td></tr>
+                <tr data-date="2026-06-15" data-endtime="16:30"><td>15-06-2026</td><td>MONDAY</td><td>01:30 PM - 04:30 PM</td><td>H.A.P.</td></tr>
+                <tr data-date="2026-06-17" data-endtime="17:00"><td>17-06-2026</td><td>WEDNESDAY</td><td>02:00 PM - 05:00 PM</td><td>FEG02</td></tr>
+                <tr data-date="2026-06-20" data-endtime="12:30"><td>20-06-2026</td><td>SATURDAY</td><td>10:00 AM - 12:30 PM</td><td>BCS012</td></tr>
             </tbody>
         </table>
+        
         <a href="index.html" class="back-link">← Back to Home</a>
     </div>
+
+    <script>
+        function processDateSheet() {
+            const now = new Date();
+            const tbody = document.getElementById('table-body');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            
+            let completedCount = 0;
+            const totalExams = rows.length;
+
+            const activeRows = [];
+            const completedRows = [];
+
+            rows.forEach(row => {
+                const dateStr = row.getAttribute('data-date');
+                const timeStr = row.getAttribute('data-endtime');
+                
+                if (dateStr && timeStr) {
+                    // Combine date and end time to check expiry
+                    const examEndDateTime = new Date(`${dateStr}T${timeStr}:00`);
+                    
+                    // Subject clean wrapper to prevent infinite badges appending
+                    const subjectCell = row.cells[3];
+                    if(!row.dataset.originalSubject) {
+                        row.dataset.originalSubject = subjectCell.innerHTML;
+                    }
+
+                    if (now > examEndDateTime) {
+                        // If Exam is Over
+                        row.classList.add('completed-row');
+                        subjectCell.innerHTML = `${row.dataset.originalSubject} <span class="status-badge status-done">Done 🏁</span>`;
+                        completedCount++;
+                        completedRows.push(row);
+                    } else {
+                        // If Exam is Future / Ongoing
+                        row.classList.remove('completed-row');
+                        subjectCell.innerHTML = `${row.dataset.originalSubject} <span class="status-badge status-active">Pending</span>`;
+                        activeRows.push(row);
+                    }
+                }
+            });
+
+            // Re-order DOM elements: Active items first, Expired items cut down to bottom
+            tbody.innerHTML = '';
+            activeRows.forEach(row => tbody.appendChild(row));
+            completedRows.forEach(row => tbody.appendChild(row));
+
+            // Progress Bar Engine Calculation
+            const percentage = totalExams > 0 ? Math.round((completedCount / totalExams) * 100) : 0;
+            const bRemaining = totalExams - completedCount;
+            
+            document.getElementById('progress-fill').style.width = `${percentage}%`;
+            document.getElementById('progress-text').innerText = `${percentage}% Over (${bRemaining} Remaining)`;
+        }
+
+        // Initialize script logic seamlessly
+        window.onload = function() {
+            processDateSheet();
+            // Automatically refresh status mapping every minute without requiring site reloads
+            setInterval(processDateSheet, 60000);
+        };
+    </script>
 </body>
 </html>
