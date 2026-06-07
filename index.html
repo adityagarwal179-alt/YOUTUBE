@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Academic Vault 2026</title>
-    <nav style="text-align: center; margin-bottom: 20px;">
-        <a href="datesheet.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1.2rem; text-transform: uppercase; display: inline-block; margin-right: 40px;">View Date Sheet</a>
-        <a href="dpharmacyimportanttopics.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1.2rem; text-transform: uppercase; display: inline-block; margin-right: 40px;">D Pharmacy Important Topics</a>
-        <a href="ignouimportanttopics.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1.2rem; text-transform: uppercase; display: inline-block;">IGNOU Important Topics</a>
+    
+    <nav style="text-align: center; margin: 15px auto 30px auto; max-width: 850px; background: rgba(18, 18, 18, 0.8); padding: 15px; border-radius: 15px; border: 1px solid #222; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+        <a href="datesheet.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1rem; text-transform: uppercase; display: inline-block; margin: 0 20px; letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#00f2ff'">View Date Sheet</a>
+        
+        <a href="importanttopics.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1rem; text-transform: uppercase; display: inline-block; margin: 0 20px; letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#00f2ff'">D Pharmacy Important Topics</a>
+        
+        <a href="ignouimportanttopics.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1rem; text-transform: uppercase; display: inline-block; margin: 0 20px; letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#00f2ff'">IGNOU Important Topics</a>
     </nav>
+
     <style>
         :root { --pharma: #ff4d6d; --bca: #00f2ff; --bg: #050505; --card: #121212; --accent: #00ff00; }
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; line-height: 1.6; }
@@ -125,7 +129,6 @@
         </div>
     </div>
 
-
     <div class="section-header bca-bg">
         BCA 2nd SEMESTER (2:00 PM - 5:00 PM)
         <a class="center-link" href="https://www.google.com/maps/search/?api=1&query=Post+Graduate+Government+College+Sector+46+Chandigarh" target="_blank">
@@ -219,7 +222,6 @@
 </div>
 
 <script>
-    // AUTOMATIC TASK / EXAM EXPIRY CHECKER
     function checkExamExpiry() {
         const now = new Date();
         const cards = document.querySelectorAll('.card');
@@ -229,20 +231,15 @@
             const expiryTimeStr = card.getAttribute('data-time');
 
             if (expiryDateStr && expiryTimeStr) {
-                // Parse date and time into a Date Object
                 const expiryDateTime = new Date(`${expiryDateStr}T${expiryTimeStr}:00`);
 
-                // Agar current time, expiry time se aage nikal gaya hai
                 if (now > expiryDateTime) {
                     const videoBox = card.querySelector('.video-box');
                     const checkbox = card.querySelector('input[type="checkbox"]');
                     
                     if (videoBox && !videoBox.classList.contains('exam-expired')) {
-                        // 1. Video hatayein aur status text add karein
                         videoBox.innerHTML = "🏁 EXAM COMPLETED / TASK DONE";
                         videoBox.classList.add('exam-expired');
-                        
-                        // 2. Checkbox ko auto-tick (Checked) mark karein
                         if (checkbox) checkbox.checked = true;
                     }
                 }
@@ -250,18 +247,13 @@
         });
     }
 
-    // Run when page loads
     window.onload = function() {
         checkExamExpiry();
-        // Check every 1 minute dynamically without page refresh
         setInterval(checkExamExpiry, 60000); 
     };
 
-    // VIDEO CHANGER LOGIC
     function changeVid(boxId, inputId) {
         const box = document.getElementById(boxId);
-        
-        // Agar exam khatam ho chuka hai toh naya video add nahi hone dega
         if (box.classList.contains('exam-expired')) {
             alert("This exam/task is already completed! Cannot change video.");
             return;
@@ -281,7 +273,6 @@
         }
     }
 
-    // FILE MANAGER LOGIC
     function upFile(input, gridId) {
         const grid = document.getElementById(gridId);
         const file = input.files[0];
