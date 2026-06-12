@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D.Pharm 1st Year Reappear Guide</title>
+    <style>
+        :root { 
+            --pharma: #ff4d6d; 
+            --bg: #050505; 
+            --card: #121212; 
+            --accent: #00ff00; 
+            --highlight: #ffcc00; 
+        }
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background: var(--bg); 
+            color: #fff; 
+            margin: 0; 
+            padding: 10px; 
+            line-height: 1.6; 
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        .main-title { 
+            text-align: center; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            margin-bottom: 5px; 
+            color: #fff; 
+        }
+        .subtitle {
+            text-align: center;
+            color: var(--pharma);
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .section-header { 
+            padding: 18px; 
+            border-radius: 12px; 
+            margin: 40px 0 20px; 
+            text-align: center; 
+            font-weight: 800; 
+            border: 2px solid; 
+            text-transform: uppercase; 
+            font-size: 1.2rem;
+        }
+        .pharma-bg { border-color: var(--pharma); color: var(--pharma); background: rgba(255, 77, 109, 0.1); }
+        .accent-bg { border-color: var(--accent); color: var(--accent); background: rgba(0, 255, 0, 0.1); }
+        .highlight-bg { border-color: var(--highlight); color: var(--highlight); background: rgba(255, 204, 0, 0.1); }
+
+        .card { 
+            background: var(--card); 
+            border-radius: 20px; 
+            padding: 25px; 
+            margin-bottom: 35px; 
+            border: 1px solid #222; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { 
+            position: relative; 
+            padding-left: 25px; 
+            margin-bottom: 12px; 
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+        li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--pharma);
+        }
+        .target-list li::before { content: "🎯"; color: var(--highlight); }
+        .tips-list li::before { content: "💡"; color: var(--accent); }
+
+        /* Grid layouts for optimization */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* Interactive Revision Schedule */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .schedule-box {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 12px;
+        }
+        .schedule-box h4 {
+            margin: 0 0 10px 0;
+            color: var(--highlight);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 5px;
+        }
+        .schedule-box li { font-size: 0.85rem; padding-left: 18px; margin-bottom: 8px; }
+        .schedule-box li::before { content: "•"; color: var(--highlight); font-size: 1.2rem; top: -2px; }
+
+        /* Custom Table Styling */
+        .table-responsive { overflow-x: auto; margin-top: 15px; }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            background: #0a0a0a; 
+            border-radius: 12px; 
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #222; }
+        th { 
+            background: rgba(255, 77, 109, 0.15); 
+            color: var(--pharma); 
+            font-weight: bold; 
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        td { color: #ccc; font-size: 0.9rem; }
+        tr:hover td { color: #fff; background: rgba(255,255,255,0.02); }
+        .label-badge {
+            background: #222;
+            color: var(--accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin: 2px;
+            border: 1px solid #333;
+        }
+
+        .footer-banner {
+            text-align: center;
+            background: linear-gradient(90deg, rgba(255,77,109,0.1) 0%, rgba(0,255,0,0.1) 100%);
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 40px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="main-title">🎯 D.Pharm 1st Year Reappear Guide</h1>
+    <div class="subtitle">PSBTE Smart Passing Strategy</div>
+
+    <div class="card" style="border-color: var(--highlight);">
+        <div class="card-title" style="color: var(--highlight);">🎯 IMPORTANT TARGETS</div>
+        <ul class="target-list">
+            <li>You only need passing marks now.</li>
+            <li><strong>Chemistry Target:</strong> 28–30 marks</li>
+            <li><strong>Anatomy Target:</strong> 27–30 marks</li>
+            <li>Sessional marks are already added.</li>
+            <li>Focus heavily on repeated topics only.</li>
+            <li>Practice high-yield diagrams and core definitions.</li>
+        </ul>
+    </div>
+
+    <div class="section-header pharma-bg">
+        HUMAN ANATOMY & PHYSIOLOGY (3014)
+    </div>
+
+    <div class="grid-2col">
+        <div class="card">
+            <div class="card-title">🔥 MOST IMPORTANT CHAPTERS</div>
+            <ul>
+                <li>Blood clotting</li>
+                <li>Cardiac cycle</li>
+                <li>Urine formation</li>
+                <li>Human eye & Ear</li>
+                <li>Heart & Blood circulation</li>
+                <li>Respiratory & Digestive systems</li>
+                <li>Epithelial tissue & Cell structure</li>
+                <li>Brain & Spinal cord</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🔥 MOST REPEATED 1-MARK QUESTIONS</div>
+            <div class="grid-2col" style="grid-template-columns: 1fr 1fr; gap: 0 10px;">
+                <ul>
+                    <li>Define nephron</li>
+                    <li>Define neuron</li>
+                    <li>Define myopia</li>
+                    <li>Define reflex action</li>
+                    <li>Define hemolysis</li>
+                </ul>
+                <ul>
+                    <li>Define micturition</li>
+                    <li>Define tidal volume</li>
+                    <li>Define muscle fatigue</li>
+                    <li>Define blood pressure</li>
+                    <li>Define pulse</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2col">
+        <div class="card">
+            <div class="card-title">🔥 MOST REPEATED SHORT QUESTIONS</div>
+            <ul>
+                <li>Functions of liver & pancreas</li>
+                <li>Structure of an animal cell</li>
+                <li>Mechanism of respiration</li>
+                <li>Blood groups & Lymphatic system</li>
+                <li>Functions of kidney</li>
+                <li>Structure of a neuron</li>
+                <li>Vertebral column configuration</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🔥 MOST REPEATED LONG QUESTIONS</div>
+            <ul>
+                <li>Explain cardiac cycle & blood circulation</li>
+                <li>Explain mechanism of blood clotting</li>
+                <li>Explain urine formation step-by-step</li>
+                <li>Explain respiratory & digestive systems</li>
+                <li>Explain epithelial tissue configurations</li>
+                <li>Draw and explain the Human Eye</li>
+                <li>Draw and explain the Nephron structure</li>
+                <li>Explain the Female Reproductive System</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">🔥 IMPORTANT DIAGRAMS & KEY LABELS</div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">Diagram Title</th>
+                        <th>Crucial Target Labels to Memorize</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Human Eye</strong></td>
+                        <td>
+                            <span class="label-badge">Cornea</span>
+                            <span class="label-badge">Lens</span>
+                            <span class="label-badge">Retina</span>
+                            <span class="label-badge">Iris</span>
+                            <span class="label-badge">Optic nerve</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nephron</strong></td>
+                        <td>
+                            <span class="label-badge">Bowman capsule</span>
+                            <span class="label-badge">Glomerulus</span>
+                            <span class="label-badge">Loop of Henle</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Heart</strong></td>
+                        <td>
+                            <span class="label-badge">Right atrium</span>
+                            <span class="label-badge">Left atrium</span>
+                            <span class="label-badge">Ventricles</span>
+                            <span class="label-badge">Aorta</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ear</strong></td>
+                        <td>
+                            <span class="label-badge">Pinna</span>
+                            <span class="label-badge">Cochlea</span>
+                            <span class="label-badge">Tympanic membrane</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cell</strong></td>
+                        <td>
+                            <span class="label-badge">Nucleus</span>
+                            <span class="label-badge">Cytoplasm</span>
+                            <span class="label-badge">Cell membrane</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card highlight-bg" style="text-align: center; padding: 20px;">
+        <h3 style="margin: 0 0 10px 0; color: var(--highlight);">📊 ANATOMY PASSING SCORE BLUEPRINT</h3>
+        <span style="color: #fff; font-size: 1.1rem; letter-spacing: 1px;">
+            Section-A: <strong>10–12 Marks</strong> &nbsp;|&nbsp; 
+            Section-B: <strong>10 Marks</strong> &nbsp;|&nbsp; 
+            Section-C: <strong>8–10 Marks</strong>
+        </span>
+        <div style="margin-top: 8px; font-weight: bold; color: var(--accent); font-size: 1.2rem;">TARGET TOTAL = COMFORTABLE PASS</div>
+    </div>
+
+    <div class="section-header accent-bg">
+        CRITICAL EXAM DAY STRATEGY
+    </div>
+
+    <div class="card">
+        <div class="card-title">🔥 ONE-DAY REVISION SCHEDULE</div>
+        <div class="schedule-grid">
+            <div class="schedule-box">
+                <h4>🌅 MORNING</h4>
+                <ul>
+                    <li>Definitions</li>
+                    <li>Structures</li>
+                    <li>Diagram Block</li>
+                </ul>
+            </div>
+            <div class="schedule-box">
+                <h4>☀️ AFTERNOON</h4>
+                <ul>
+                    <li>Blood clotting</li>
+                    <li>Cardiac cycle</li>
+                    <li>Antibiotics</li>
+                    <li>Anti-hypertensives</li>
+                </ul>
+            </div>
+            <div class="schedule-box">
+                <h4>🌆 EVENING</h4>
+                <ul>
+                    <li>Urine formation</li>
+                    <li>Respiratory sys.</li>
+                    <li>Limit tests</li>
+                </ul>
+            </div>
+            <div class="schedule-box">
+                <h4>🌌 NIGHT</h4>
+                <ul>
+                    <li>Revise structures</li>
+                    <li>Re-check labels</li>
+                    <li>Practice 1 long Q</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2col">
+        <div class="card">
+            <div class="card-title" style="color: var(--accent);">🔥 SYSTEM EXAM TIPS</div>
+            <ul class="tips-list">
+                <li>Attempt maximum possible questions.</li>
+                <li>Never leave your answer sheet blank.</li>
+                <li>Underline headings and sub-headings clearly.</li>
+                <li>Keep English simple and to the point.</li>
+                <li>Write explanations using structured bullet points.</li>
+                <li>Integrate neat diagrams wherever relevant.</li>
+                <li>Don't block time on overly difficult questions.</li>
+                <li>Secure your strong, easy questions first.</li>
+                <li>Keep handwriting distinct, clean, and spacious.</li>
+                <li>Reproduce core definitions precisely.</li>
+            </ul>
+        </div>
+
+        <div class="card" style="border-color: var(--pharma);">
+            <div class="card-title" style="color: var(--pharma);">🔥 FINAL STRATEGY ADVICE</div>
+            <p style="margin-top: 0; color: #eee; font-size: 0.95rem;">
+                <strong>You are already close to passing.</strong> The history blueprints clearly present repetitive structural patterns year over year. 
+            </p>
+            <p style="color: #bbb; font-size: 0.9rem; line-height: 1.5;">
+                Focusing single-mindedly on the following vectors guarantees success:
+            </p>
+            <ul style="margin-bottom: 15px;">
+                <li>System Structures</li>
+                <li>Exact Definitions</li>
+                <li>Primary Drug Uses</li>
+                <li>Repeated Long Tasks</li>
+                <li>Labeled Diagram Sheets</li>
+            </ul>
+            <p style="margin: 0; font-weight: bold; color: var(--accent); text-align: center; border-top: 1px dashed #333; padding-top: 10px;">
+                You have an exceptionally high probability to pass both subjects!
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-banner">
+        REPEATED TOPICS + LABELED DIAGRAMS + CORE DEFINITIONS = PASS ✔️
+    </div>
+</div>
+
+</body>
+</html>
