@@ -4,89 +4,281 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Academic Vault 2026</title>
+    <nav style="text-align: center; margin: 15px auto 30px auto; max-width: 850px; background: rgba(18, 18, 18, 0.8); padding: 15px; border-radius: 15px; border: 1px solid #222; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+        <a href="datesheet.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1rem; text-transform: uppercase; display: inline-block; margin: 0 20px; letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#00f2ff'">View Date Sheet</a>
+        <a href="importanttopics.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1rem; text-transform: uppercase; display: inline-block; margin: 0 20px; letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#00f2ff'">D Pharmacy Important Topics</a>
+    </nav>
     <style>
         :root { --pharma: #ff4d6d; --bca: #00f2ff; --bg: #050505; --card: #121212; --accent: #00ff00; --highlight: #ffcc00; }
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; line-height: 1.6; }
         .container { max-width: 900px; margin: 0 auto; }
         h1 { text-align: center; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; color: #fff; }
         .section-header { padding: 18px; border-radius: 12px; margin: 40px 0 20px; text-align: center; font-weight: 800; border: 2px solid; text-transform: uppercase; font-size: 1.2rem; }
-        .center-link { display: block; font-size: 0.85rem; text-transform: none; font-weight: 400; margin-top: 6px; color: #ccc; text-decoration: none; transition: color 0.2s; cursor: pointer; }
+        .center-link { display: block; font-size: 0.85rem; text-transform: none; font-weight: 400; margin-top: 6px; color: #ccc; text-decoration: none; transition: color 0.2s, text-decoration 0.2s; cursor: pointer; }
         .center-link:hover { color: #fff; text-decoration: underline; }
         .pharma-bg { border-color: var(--pharma); color: var(--pharma); background: rgba(255, 77, 109, 0.1); }
         .bca-bg { border-color: var(--bca); color: var(--bca); background: rgba(0, 242, 255, 0.1); }
-        .card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 35px; border: 1px solid #222; }
-        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 35px; border: 1px solid #222; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card.custom-timing-highlight { border: 2px solid #ff4500; box-shadow: 0 0 15px rgba(255, 69, 0, 0.3); }
+        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; gap: 10px; }
         .subject-title { font-size: 1.3rem; font-weight: bold; display: flex; align-items: center; gap: 10px; }
-        .exam-date-box { background: #ff3c3c; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; text-align: center; }
-        .video-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 15px; overflow: hidden; margin-bottom: 20px; border: 1px solid #333; }
+        .badge-container { display: flex; gap: 10px; flex-wrap: wrap; }
+        .exam-date-box { background: #ff3c3c; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; text-align: center; min-width: 100px; }
+        .time-alert-box { background: #ff9f43; color: black; padding: 8px 15px; border-radius: 8px; font-weight: 900; font-size: 0.85rem; text-align: center; display: flex; align-items: center; justify-content: center; }
+        .time-alert-box.feg-alert { background: var(--highlight); box-shadow: 0 0 8px var(--highlight); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 0.9; } 50% { opacity: 1; } 100% { opacity: 0.9; } }
+        .url-updater { display: flex; gap: 10px; margin-bottom: 15px; background: #000; padding: 10px; border-radius: 10px; border: 1px solid #333; }
+        .url-updater input { flex: 1; background: transparent; border: none; color: var(--accent); padding: 5px; font-size: 0.85rem; outline: none; }
+        .url-updater button { background: #222; color: #fff; border: 1px solid #444; padding: 5px 15px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: bold; transition: 0.2s; }
+        .url-updater button:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+        .video-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 15px; overflow: hidden; margin-bottom: 20px; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: #444; font-style: italic; }
         iframe { width: 100%; height: 100%; border: none; }
-        .completed-card { opacity: 0.5; filter: grayscale(1); }
-        .history-section { border-top: 3px solid #333; margin-top: 50px; padding-top: 20px; }
+        .exam-expired { color: #ff3c3c !important; font-weight: bold; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        .file-manager { background: #0a0a0a; padding: 15px; border-radius: 12px; border: 1px dashed #444; }
+        .upload-btn { background: #1a1a1a; color: var(--bca); padding: 10px 20px; border-radius: 8px; cursor: pointer; display: inline-block; font-size: 0.85rem; border: 1px solid #333; margin-bottom: 15px; font-weight: bold; }
+        .upload-btn:hover { background: #222; }
+        input[type="file"] { display: none; }
+        .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; }
+        .file-item { position: relative; background: #1a1a1a; padding: 12px; border-radius: 10px; text-align: center; border: 1px solid #333; transition: 0.3s; }
+        .file-item:hover { border-color: var(--accent); transform: translateY(-3px); }
+        .file-item img { width: 100%; height: 70px; object-fit: cover; border-radius: 5px; cursor: pointer; }
+        .file-icon { font-size: 2.2rem; cursor: pointer; display: block; margin-bottom: 8px; }
+        .file-name { font-size: 0.7rem; color: #aaa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 5px; }
+        .del-btn { position: absolute; top: -8px; right: -8px; background: #ff0000; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; font-size: 12px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        textarea { width: 100%; height: 80px; background: #000; border: 1px solid #222; color: #ccc; border-radius: 12px; padding: 12px; margin-top: 20px; resize: none; font-size: 0.9rem; box-sizing: border-box; }
+        input[type="checkbox"] { transform: scale(1.5); accent-color: var(--accent); }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <nav style="text-align: center; margin: 15px auto 30px auto; max-width: 850px; background: rgba(18, 18, 18, 0.8); padding: 15px; border-radius: 15px; border: 1px solid #222;">
-        <a href="datesheet.html" style="color: #00f2ff; margin: 0 20px; text-decoration: none;">View Date Sheet</a>
-        <a href="importanttopics.html" style="color: #00f2ff; margin: 0 20px; text-decoration: none;">D Pharmacy Important Topics</a>
-    </nav>
-
     <h1>🚀 MASTER STUDY VAULT 2026</h1>
 
-    <div id="upcoming-exams"></div>
-    <div id="completed-exams" class="history-section">
-        <h2 style="text-align: center; color: #666;">📜 Completed / History</h2>
+    <div class="section-header pharma-bg">
+        D.PHARMA 1st YEAR (01:30 PM - 04:30 PM)
+        <a class="center-link" href="https://www.google.com/maps/search/?api=1&query=CGC+University+Mohali+State+Highway+Sirhind+Road+12A+Chandigarh+140307" target="_blank">
+            📍 Exam Centre: CGC University, Mohali (State Highway, Sirhind Road, 12A, Chandigarh 140307)
+        </a>
     </div>
-</div>
 
-<div id="all-cards" style="display:none;">
-    <div class="section-header pharma-bg">D.PHARMA 1st YEAR (01:30 PM - 04:30 PM)<a class="center-link" href="https://www.google.com/maps/search/?api=1&query=CGC+University+Mohali+State+Highway+Sirhind+Road+12A+Chandigarh+140307">📍 Exam Centre: CGC University, Mohali</a></div>
-    
     <div class="card" data-date="2026-06-01" data-time="16:30">
-        <div class="header-row"><div class="subject-title"><input type="checkbox"> CHEMISTRY</div><div class="exam-date-box">01-06-2026</div></div>
-        <div class="video-box"><iframe src="https://www.youtube-nocookie.com/embed/Ss7yRM6ss3g"></iframe></div>
-    </div>
-    
-    <div class="card" data-date="2026-06-15" data-time="16:30">
-        <div class="header-row"><div class="subject-title"><input type="checkbox"> HUMAN ANATOMY (HAP)</div><div class="exam-date-box">15-06-2026</div></div>
-        <div class="video-box"><iframe src="https://www.youtube-nocookie.com/embed/V0ZO0reLU5c"></iframe></div>
+        <div class="header-row">
+            <div class="subject-title"><input type="checkbox"> CHEMISTRY</div>
+            <div class="exam-date-box">01-06-2026<br>MONDAY</div>
+        </div>
+        <div class="url-updater">
+            <input type="text" placeholder="Paste YouTube Link to change..." id="in-chem">
+            <button onclick="changeVid('vid-chem', 'in-chem')">CHANGE VIDEO</button>
+        </div>
+        <div class="video-box" id="vid-chem">
+            <iframe src="https://www.youtube-nocookie.com/embed/Ss7yRM6ss3g" allowfullscreen></iframe>
+        </div>
+        <div class="file-manager">
+            <label class="upload-btn">➕ UPLOAD NOTES / PDF / IMG <input type="file" onchange="upFile(this, 'gal-chem')"></label>
+            <div class="file-grid" id="gal-chem"></div>
+        </div>
+        <textarea placeholder="Write important Chemistry questions here..."></textarea>
     </div>
 
-    <div class="section-header bca-bg">BCA 2nd SEMESTER (2:00 PM - 5:00 PM)<a class="center-link" href="https://www.google.com/maps/search/?api=1&query=Post+Graduate+Government+College+Sector+46+Chandigarh">📍 Centre Code: 06027 | PG Govt. College, Sec. 46-B, Chandigarh</a></div>
+    <div class="card" data-date="2026-06-15" data-time="16:30">
+        <div class="header-row">
+            <div class="subject-title"><input type="checkbox"> HUMAN ANATOMY (HAP)</div>
+            <div class="exam-date-box">15-06-2026<br>MONDAY</div>
+        </div>
+        <div class="url-updater">
+            <input type="text" placeholder="Paste YouTube Link..." id="in-hap">
+            <button onclick="changeVid('vid-hap', 'in-hap')">CHANGE VIDEO</button>
+        </div>
+        <div class="video-box" id="vid-hap">
+            <iframe src="https://www.youtube-nocookie.com/embed/V0ZO0reLU5c" allowfullscreen></iframe>
+        </div>
+        <div class="file-manager">
+            <label class="upload-btn">➕ UPLOAD FILE <input type="file" onchange="upFile(this, 'gal-hap')"></label>
+            <div class="file-grid" id="gal-hap"></div>
+        </div>
+    </div>
+
+    <div class="section-header bca-bg">
+        BCA 2nd SEMESTER (2:00 PM - 5:00 PM)
+        <a class="center-link" href="https://www.google.com/maps/search/?api=1&query=Post+Graduate+Government+College+Sector+46+Chandigarh" target="_blank">
+            📍 Centre Code: 06027 | PG Govt. College, Sec. 46-B, Chandigarh
+        </a>
+    </div>
 
     <div class="card" data-date="2026-06-08" data-time="17:00">
-        <div class="header-row"><div class="subject-title"><input type="checkbox"> MCS201</div><div class="exam-date-box">08-06-2026</div></div>
-        <div class="video-box"><iframe src="https://www.youtube-nocookie.com/embed/zePRNC4acLQ"></iframe></div>
+        <div class="header-row">
+            <div class="subject-title"><input type="checkbox"> MCS201</div>
+            <div class="exam-date-box">08-06-2026<br>MONDAY</div>
+        </div>
+        <div class="url-updater">
+            <input type="text" placeholder="Paste BCA video link here..." id="in-b1">
+            <button onclick="changeVid('vid-b1', 'in-b1')">SET VIDEO</button>
+        </div>
+        <div class="video-box" id="vid-b1">
+            <iframe src="https://www.youtube-nocookie.com/embed/zePRNC4acLQ" allowfullscreen></iframe>
+        </div>
+        <div class="file-manager">
+            <label class="upload-btn">➕ UPLOAD NOTES <input type="file" onchange="upFile(this, 'gal-b1')"></label>
+            <div class="file-grid" id="gal-b1"></div>
+        </div>
     </div>
+
     <div class="card" data-date="2026-06-09" data-time="17:00">
-        <div class="header-row"><div class="subject-title"><input type="checkbox"> MCS202</div><div class="exam-date-box">09-06-2026</div></div>
-        <div class="video-box">NO VIDEO</div>
+        <div class="header-row">
+            <div class="subject-title"><input type="checkbox"> MCS202</div>
+            <div class="exam-date-box">09-06-2026<br>TUESDAY</div>
+        </div>
+        <div class="url-updater">
+            <input type="text" placeholder="Paste link..." id="in-b2">
+            <button onclick="changeVid('vid-b2', 'in-b2')">SET VIDEO</button>
+        </div>
+        <div class="video-box" id="vid-b2">NO VIDEO ADDED</div>
+        <div class="file-manager">
+            <label class="upload-btn">➕ UPLOAD <input type="file" onchange="upFile(this, 'gal-b2')"></label>
+            <div class="file-grid" id="gal-b2"></div>
+        </div>
     </div>
+
     <div class="card" data-date="2026-06-10" data-time="17:00">
-        <div class="header-row"><div class="subject-title"><input type="checkbox"> MCS203</div><div class="exam-date-box">10-06-2026</div></div>
-        <div class="video-box">NO VIDEO</div>
+        <div class="header-row">
+            <div class="subject-title"><input type="checkbox"> MCS203</div>
+            <div class="exam-date-box">10-06-2026<br>WEDNESDAY</div>
+        </div>
+        <div class="url-updater">
+            <input type="text" placeholder="Paste link..." id="in-b3">
+            <button onclick="changeVid('vid-b3', 'in-b3')">SET VIDEO</button>
+        </div>
+        <div class="video-box" id="vid-b3">NO VIDEO ADDED</div>
+        <div class="file-manager">
+            <label class="upload-btn">➕ UPLOAD <input type="file" onchange="upFile(this, 'gal-b3')"></label>
+            <div class="file-grid" id="gal-b3"></div>
+        </div>
     </div>
+
+    <div class="card custom-timing-highlight" data-date="2026-06-17" data-time="16:00">
+        <div class="header-row">
+            <div class="subject-title"><input type="checkbox"> FEG02</div>
+            <div class="badge-container">
+                <div class="time-alert-box feg-alert">⚠️ UNIQUE TIMING: 02:00 PM - 04:00 PM</div>
+                <div class="exam-date-box">17-06-2026<br>WEDNESDAY</div>
+            </div>
+        </div>
+        <div class="url-updater">
+            <input type="text" placeholder="Paste link..." id="in-b4">
+            <button onclick="changeVid('vid-b4', 'in-b4')">SET VIDEO</button>
+        </div>
+        <div class="video-box" id="vid-b4">NO VIDEO ADDED</div>
+        <div class="file-manager">
+            <label class="upload-btn">➕ UPLOAD <input type="file" onchange="upFile(this, 'gal-b4')"></label>
+            <div class="file-grid" id="gal-b4"></div>
+        </div>
+    </div>
+
+    <div class="card" style="border-color: var(--bca);" data-date="2026-06-20" data-time="12:30">
+        <div class="header-row">
+            <div class="subject-title"><input type="checkbox"> BCS012</div>
+            <div class="badge-container">
+                <div class="time-alert-box">⏰ 10:00 AM - 12:30 PM</div>
+                <div class="exam-date-box">20-06-2026<br>SATURDAY</div>
+            </div>
+        </div>
+        <div class="url-updater">
+            <input type="text" placeholder="Paste link..." id="in-b5">
+            <button onclick="changeVid('vid-b5', 'in-b5')">SET VIDEO</button>
+        </div>
+        <div class="video-box" id="vid-b5">NO VIDEO ADDED</div>
+        <div class="file-manager">
+            <label class="upload-btn">➕ UPLOAD <input type="file" onchange="upFile(this, 'gal-b5')"></label>
+            <div class="file-grid" id="gal-b5"></div>
+        </div>
+    </div>
+
 </div>
 
 <script>
-    const now = new Date();
-    const upcoming = document.getElementById('upcoming-exams');
-    const completed = document.getElementById('completed-exams');
-    const cards = Array.from(document.querySelectorAll('#all-cards .card'));
+    function checkExamExpiry() {
+        const now = new Date();
+        const cards = document.querySelectorAll('.card');
 
-    cards.sort((a,b) => new Date(a.dataset.date) - new Date(b.dataset.date));
+        cards.forEach(card => {
+            const expiryDateStr = card.getAttribute('data-date');
+            const expiryTimeStr = card.getAttribute('data-time');
 
-    cards.forEach(card => {
-        const expiry = new Date(`${card.dataset.date}T${card.dataset.time}:00`);
-        if (now > expiry) {
-            card.classList.add('completed-card');
-            card.querySelector('input').checked = true;
-            completed.appendChild(card);
-        } else {
-            upcoming.appendChild(card);
+            if (expiryDateStr && expiryTimeStr) {
+                const expiryDateTime = new Date(`${expiryDateStr}T${expiryTimeStr}:00`);
+
+                if (now > expiryDateTime) {
+                    const videoBox = card.querySelector('.video-box');
+                    const checkbox = card.querySelector('input[type="checkbox"]');
+                    
+                    if (videoBox && !videoBox.classList.contains('exam-expired')) {
+                        videoBox.innerHTML = "🏁 EXAM COMPLETED / TASK DONE";
+                        videoBox.classList.add('exam-expired');
+                        if (checkbox) checkbox.checked = true;
+                    }
+                }
+            }
+        });
+    }
+
+    window.onload = function() {
+        checkExamExpiry();
+        setInterval(checkExamExpiry, 60000); 
+    };
+
+    function changeVid(boxId, inputId) {
+        const box = document.getElementById(boxId);
+        if (box.classList.contains('exam-expired')) {
+            alert("This exam/task is already completed! Cannot change video.");
+            return;
         }
-    });
+
+        const url = document.getElementById(inputId).value;
+        let id = "";
+        
+        if (url.includes('v=')) id = url.split('v=')[1].split('&')[0];
+        else if (url.includes('youtu.be/')) id = url.split('youtu.be/')[1].split('?')[0];
+
+        if (id) {
+            box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}" allowfullscreen></iframe>`;
+            document.getElementById(inputId).value = "";
+        } else {
+            alert("Invalid YouTube Link! Please paste a correct URL.");
+        }
+    }
+
+    function upFile(input, gridId) {
+        const grid = document.getElementById(gridId);
+        const file = input.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = e.target.result;
+            const item = document.createElement('div');
+            item.className = 'file-item';
+            
+            let preview = '';
+            if (file.type.startsWith('image/')) {
+                preview = `<img src="${data}" onclick="window.open('${data}', '_blank')">`;
+            } else if (file.type.startsWith('video/')) {
+                preview = `<span class="file-icon" onclick="window.open('${data}', '_blank')">🎬</span>`;
+            } else if (file.type.includes('pdf')) {
+                preview = `<span class="file-icon" onclick="window.open('${data}', '_blank')">📕</span>`;
+            } else {
+                preview = `<span class="file-icon" onclick="window.open('${data}', '_blank')">📄</span>`;
+            }
+
+            item.innerHTML = `
+                ${preview}
+                <div class="file-name">${file.name}</div>
+                <button class="del-btn" onclick="this.parentElement.remove()">✕</button>
+            `;
+            grid.appendChild(item);
+        };
+        reader.readAsDataURL(file);
+        input.value = '';
+    }
 </script>
 
 </body>
