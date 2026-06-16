@@ -38,17 +38,6 @@
         .video-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 15px; overflow: hidden; margin-bottom: 20px; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: #444; font-style: italic; }
         iframe { width: 100%; height: 100%; border: none; }
         .exam-expired { color: #ff3c3c !important; font-weight: bold; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
-        .file-manager { background: #0a0a0a; padding: 15px; border-radius: 12px; border: 1px dashed #444; }
-        .upload-btn { background: #1a1a1a; color: var(--bca); padding: 10px 20px; border-radius: 8px; cursor: pointer; display: inline-block; font-size: 0.85rem; border: 1px solid #333; margin-bottom: 15px; font-weight: bold; }
-        .upload-btn:hover { background: #222; }
-        input[type="file"] { display: none; }
-        .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; }
-        .file-item { position: relative; background: #1a1a1a; padding: 12px; border-radius: 10px; text-align: center; border: 1px solid #333; transition: 0.3s; }
-        .file-item:hover { border-color: var(--accent); transform: translateY(-3px); }
-        .file-item img { width: 100%; height: 70px; object-fit: cover; border-radius: 5px; cursor: pointer; }
-        .file-icon { font-size: 2.2rem; cursor: pointer; display: block; margin-bottom: 8px; }
-        .file-name { font-size: 0.7rem; color: #aaa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 5px; }
-        .del-btn { position: absolute; top: -8px; right: -8px; background: #ff0000; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; font-size: 12px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
         textarea { width: 100%; height: 80px; background: #000; border: 1px solid #222; color: #ccc; border-radius: 12px; padding: 12px; margin-top: 20px; resize: none; font-size: 0.9rem; box-sizing: border-box; }
         input[type="checkbox"] { transform: scale(1.5); accent-color: var(--accent); }
     </style>
@@ -58,7 +47,6 @@
 <div class="container">
     <h1>🚀 MASTER STUDY VAULT 2026</h1>
 
-    <!-- ================= D.PHARMA SECTION ================= -->
     <div class="section-header pharma-bg">
         D.PHARMA 1st YEAR (01:30 PM - 04:30 PM)
         <a class="center-link" href="https://www.google.com/maps/search/?api=1&query=CGC+University+Mohali+State+Highway+Sirhind+Road+12A+Chandigarh+140307" target="_blank">
@@ -66,7 +54,6 @@
         </a>
     </div>
 
-    <!-- CHEMISTRY -->
     <div class="card" data-date="2026-06-01" data-time="16:30">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> CHEMISTRY</div>
@@ -80,14 +67,9 @@
         <div class="video-box" id="vid-chem">
             <iframe src="https://www.youtube-nocookie.com/embed/Ss7yRM6ss3g" allowfullscreen></iframe>
         </div>
-        <div class="file-manager">
-            <label class="upload-btn">➕ UPLOAD NOTES / PDF / IMG <input type="file" onchange="upFile(this, 'gal-chem')"></label>
-            <div class="file-grid" id="gal-chem"></div>
-        </div>
         <textarea placeholder="Write important Chemistry questions here..."></textarea>
     </div>
 
-    <!-- HUMAN ANATOMY -->
     <div class="card" data-date="2026-06-15" data-time="16:30">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> HUMAN ANATOMY (HAP)</div>
@@ -101,14 +83,9 @@
         <div class="video-box" id="vid-hap">
             <iframe src="https://www.youtube-nocookie.com/embed/V0ZO0reLU5c" allowfullscreen></iframe>
         </div>
-        <div class="file-manager">
-            <label class="upload-btn">➕ UPLOAD FILE <input type="file" onchange="upFile(this, 'gal-hap')"></label>
-            <div class="file-grid" id="gal-hap"></div>
-        </div>
     </div>
 
 
-    <!-- ================= BCA SECTION ================= -->
     <div class="section-header bca-bg">
         BCA 2nd SEMESTER (2:00 PM - 5:00 PM)
         <a class="center-link" href="https://www.google.com/maps/search/?api=1&query=Post+Graduate+Government+College+Sector+46+Chandigarh" target="_blank">
@@ -116,7 +93,6 @@
         </a>
     </div>
 
-    <!-- MCS201 -->
     <div class="card" data-date="2026-06-08" data-time="17:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> MCS201</div>
@@ -130,13 +106,8 @@
         <div class="video-box" id="vid-b1">
             <iframe src="https://www.youtube-nocookie.com/embed/zePRNC4acLQ" allowfullscreen></iframe>
         </div>
-        <div class="file-manager">
-            <label class="upload-btn">➕ UPLOAD NOTES <input type="file" onchange="upFile(this, 'gal-b1')"></label>
-            <div class="file-grid" id="gal-b1"></div>
-        </div>
     </div>
 
-    <!-- MCS202 -->
     <div class="card" data-date="2026-06-09" data-time="17:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> MCS202</div>
@@ -148,13 +119,8 @@
             <button onclick="changeVid('vid-b2', 'in-b2')">SET VIDEO</button>
         </div>
         <div class="video-box" id="vid-b2">NO VIDEO ADDED</div>
-        <div class="file-manager">
-            <label class="upload-btn">➕ UPLOAD <input type="file" onchange="upFile(this, 'gal-b2')"></label>
-            <div class="file-grid" id="gal-b2"></div>
-        </div>
     </div>
 
-    <!-- MCS203 -->
     <div class="card" data-date="2026-06-10" data-time="17:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> MCS203</div>
@@ -166,13 +132,8 @@
             <button onclick="changeVid('vid-b3', 'in-b3')">SET VIDEO</button>
         </div>
         <div class="video-box" id="vid-b3">NO VIDEO ADDED</div>
-        <div class="file-manager">
-            <label class="upload-btn">➕ UPLOAD <input type="file" onchange="upFile(this, 'gal-b3')"></label>
-            <div class="file-grid" id="gal-b3"></div>
-        </div>
     </div>
 
-    <!-- FEG02 -->
     <div class="card custom-timing-highlight" data-date="2026-06-17" data-time="16:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> FEG02</div>
@@ -189,13 +150,8 @@
         <div class="video-box" id="vid-b4">
             <iframe src="https://www.youtube-nocookie.com/embed/cuCQ2VXivOU" allowfullscreen></iframe>
         </div>
-        <div class="file-manager">
-            <label class="upload-btn">➕ UPLOAD <input type="file" onchange="upFile(this, 'gal-b4')"></label>
-            <div class="file-grid" id="gal-b4"></div>
-        </div>
     </div>
 
-    <!-- BCS012 -->
     <div class="card" style="border-color: var(--bca);" data-date="2026-06-20" data-time="12:30">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox"> BCS012</div>
@@ -210,10 +166,6 @@
             <button onclick="changeVid('vid-b5', 'in-b5')">SET VIDEO</button>
         </div>
         <div class="video-box" id="vid-b5">NO VIDEO ADDED</div>
-        <div class="file-manager">
-            <label class="upload-btn">➕ UPLOAD <input type="file" onchange="upFile(this, 'gal-b5')"></label>
-            <div class="file-grid" id="gal-b5"></div>
-        </div>
     </div>
 </div>
 
@@ -290,39 +242,6 @@
         } else {
             alert("Invalid YouTube Link! Please paste a correct URL.");
         }
-    }
-
-    function upFile(input, gridId) {
-        const grid = document.getElementById(gridId);
-        const file = input.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const data = e.target.result;
-            const item = document.createElement('div');
-            item.className = 'file-item';
-            
-            let preview = '';
-            if (file.type.startsWith('image/')) {
-                preview = `<img src="${data}" onclick="window.open('${data}', '_blank')">`;
-            } else if (file.type.startsWith('video/')) {
-                preview = `<span class="file-icon" onclick="window.open('${data}', '_blank')">🎬</span>`;
-            } else if (file.type.includes('pdf')) {
-                preview = `<span class="file-icon" onclick="window.open('${data}', '_blank')">📕</span>`;
-            } else {
-                preview = `<span class="file-icon" onclick="window.open('${data}', '_blank')">📄</span>`;
-            }
-
-            item.innerHTML = `
-                ${preview}
-                <div class="file-name">${file.name}</div>
-                <button class="del-btn" onclick="this.parentElement.remove()">✕</button>
-            `;
-            grid.appendChild(item);
-        };
-        reader.readAsDataURL(file);
-        input.value = '';
     }
 </script>
 
