@@ -197,17 +197,18 @@
                         countdownBox.classList.add('countdown-expired');
                     }
                 } else {
-                    // Update Active Countdown Timer Logic
+                    // Update Active Countdown Timer Logic including Seconds
                     if (countdownBox) {
                         const timeDifference = expiryDateTime - now;
 
                         const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
                         const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
                         let countdownText = "⏳ Remaining: ";
                         if (days > 0) countdownText += `${days}d `;
-                        countdownText += `${hours}h ${minutes}m`;
+                        countdownText += `${hours}h ${minutes}m ${seconds}s`;
 
                         countdownBox.innerHTML = countdownText;
                         countdownBox.classList.remove('countdown-expired');
@@ -219,8 +220,8 @@
 
     window.onload = function() {
         checkExamExpiryAndTimers();
-        // Checked and updated every minute (60000ms)
-        setInterval(checkExamExpiryAndTimers, 60000); 
+        // Updated every second (1000ms) to display ticking seconds smoothly
+        setInterval(checkExamExpiryAndTimers, 1000); 
     };
 
     function changeVid(boxId, inputId) {
