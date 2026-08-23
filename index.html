@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Academic Vault 2026</title>
+    <title>Master Academic Vault 2026/2027</title>
     <nav style="text-align: center; margin: 15px auto 30px auto; max-width: 850px; background: rgba(18, 18, 18, 0.8); padding: 15px; border-radius: 15px; border: 1px solid #222; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
         <a href="datesheet.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1rem; text-transform: uppercase; display: inline-block; margin: 0 20px; letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#00f2ff'">View Date Sheet</a>
     </nav>
@@ -24,7 +24,6 @@
         .badge-container { display: flex; gap: 10px; flex-wrap: wrap; }
         .exam-date-box { background: #ff3c3c; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; text-align: center; min-width: 100px; }
         .time-alert-box { background: #ff9f43; color: black; padding: 8px 15px; border-radius: 8px; font-weight: 900; font-size: 0.85rem; text-align: center; display: flex; align-items: center; justify-content: center; }
-        .time-alert-box.feg-alert { background: var(--highlight); box-shadow: 0 0 8px var(--highlight); animation: pulse 2s infinite; }
         
         /* Countdown element styling */
         .card-countdown { display: inline-block; background: rgba(0, 0, 0, 0.6); color: var(--highlight); padding: 6px 14px; border-radius: 6px; font-weight: bold; font-family: monospace; font-size: 0.85rem; border: 1px dashed #444; margin-bottom: 15px; }
@@ -45,127 +44,103 @@
 <body>
 
 <div class="container">
-    <h1>🚀 MASTER STUDY VAULT 2026</h1>
-
-    <div class="section-header pharma-bg">
-        D.PHARMA 1st YEAR (01:30 PM - 04:30 PM)
-        <a class="center-link" href="https://www.google.com/maps/search/?api=1&query=CGC+University+Mohali+State+Highway+Sirhind+Road+12A+Chandigarh+140307" target="_blank">
-            📍 Exam Centre: CGC University, Mohali (State Highway, Sirhind Road, 12A, Chandigarh 140307)
-        </a>
-    </div>
-
-    <div class="card" data-date="2026-06-01" data-time="13:30">
-        <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> CHEMISTRY</div>
-            <div class="exam-date-box">01-06-2026<br>MONDAY</div>
-        </div>
-        <div class="card-countdown">Calculating time...</div>
-        <div class="url-updater">
-            <input type="text" placeholder="Paste YouTube Link to change..." id="in-chem">
-            <button onclick="changeVid('vid-chem', 'in-chem')">CHANGE VIDEO</button>
-        </div>
-        <div class="video-box" id="vid-chem">
-            <iframe src="https://www.youtube-nocookie.com/embed/Ss7yRM6ss3g" allowfullscreen></iframe>
-        </div>
-        <textarea placeholder="Write important Chemistry questions here..."></textarea>
-    </div>
-
-    <div class="card" data-date="2026-06-15" data-time="13:30">
-        <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> HUMAN ANATOMY (HAP)</div>
-            <div class="exam-date-box">15-06-2026<br>MONDAY</div>
-        </div>
-        <div class="card-countdown">Calculating time...</div>
-        <div class="url-updater">
-            <input type="text" placeholder="Paste YouTube Link..." id="in-hap">
-            <button onclick="changeVid('vid-hap', 'in-hap')">CHANGE VIDEO</button>
-        </div>
-        <div class="video-box" id="vid-hap">
-            <iframe src="https://www.youtube-nocookie.com/embed/V0ZO0reLU5c" allowfullscreen></iframe>
-        </div>
-    </div>
-
+    <h1>🚀 MASTER STUDY VAULT 2026/2027</h1>
 
     <div class="section-header bca-bg">
-        BCA 2nd SEMESTER (2:00 PM - 5:00 PM)
+        EXAMINATION SCHEDULE (DEC 2026 - JAN 2027)
         <a class="center-link" href="https://www.google.com/maps/search/?api=1&query=Post+Graduate+Government+College+Sector+46+Chandigarh" target="_blank">
-            📍 Centre Code: 06027 | PG Govt. College, Sec. 46-B, Chandigarh
+            📍 Exam Centre: PG Govt. College, Sec. 46-B, Chandigarh
         </a>
     </div>
 
-    <div class="card" data-date="2026-06-08" data-time="14:00">
+    <!-- BCS131 -->
+    <div class="card" data-date="2026-12-04" data-time="10:00">
         <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> MCS201</div>
-            <div class="exam-date-box">08-06-2026<br>MONDAY</div>
-        </div>
-        <div class="card-countdown">Calculating time...</div>
-        <div class="url-updater">
-            <input type="text" placeholder="Paste BCA video link here..." id="in-b1">
-            <button onclick="changeVid('vid-b1', 'in-b1')">SET VIDEO</button>
-        </div>
-        <div class="video-box" id="vid-b1">
-            <iframe src="https://www.youtube-nocookie.com/embed/zePRNC4acLQ" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <div class="card" data-date="2026-06-09" data-time="14:00">
-        <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> MCS202</div>
-            <div class="exam-date-box">09-06-2026<br>TUESDAY</div>
-        </div>
-        <div class="card-countdown">Calculating time...</div>
-        <div class="url-updater">
-            <input type="text" placeholder="Paste link..." id="in-b2">
-            <button onclick="changeVid('vid-b2', 'in-b2')">SET VIDEO</button>
-        </div>
-        <div class="video-box" id="vid-b2">NO VIDEO ADDED</div>
-    </div>
-
-    <div class="card" data-date="2026-06-10" data-time="14:00">
-        <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> MCS203</div>
-            <div class="exam-date-box">10-06-2026<br>WEDNESDAY</div>
-        </div>
-        <div class="card-countdown">Calculating time...</div>
-        <div class="url-updater">
-            <input type="text" placeholder="Paste link..." id="in-b3">
-            <button onclick="changeVid('vid-b3', 'in-b3')">SET VIDEO</button>
-        </div>
-        <div class="video-box" id="vid-b3">NO VIDEO ADDED</div>
-    </div>
-
-    <div class="card custom-timing-highlight" data-date="2026-06-17" data-time="14:00">
-        <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> FEG02</div>
+            <div class="subject-title"><input type="checkbox"> BCS131</div>
             <div class="badge-container">
-                <div class="time-alert-box feg-alert">⚠️ UNIQUE TIMING: 02:00 PM - 04:00 PM</div>
-                <div class="exam-date-box">17-06-2026<br>WEDNESDAY</div>
+                <div class="time-alert-box">⏰ 10:00 AM - 1:00 PM</div>
+                <div class="exam-date-box">04-12-2026<br>FRIDAY</div>
             </div>
         </div>
         <div class="card-countdown">Calculating time...</div>
         <div class="url-updater">
-            <input type="text" placeholder="Paste link..." id="in-b4">
-            <button onclick="changeVid('vid-b4', 'in-b4')">SET VIDEO</button>
+            <input type="text" placeholder="Paste YouTube Link to change..." id="in-bcs131">
+            <button onclick="changeVid('vid-bcs131', 'in-bcs131')">SET VIDEO</button>
         </div>
-        <div class="video-box" id="vid-b4">
-            <iframe src="https://www.youtube-nocookie.com/embed/cuCQ2VXivOU" allowfullscreen></iframe>
-        </div>
+        <div class="video-box" id="vid-bcs131">NO VIDEO ADDED</div>
+        <textarea placeholder="Write important questions for BCS131 here..."></textarea>
     </div>
 
-    <div class="card" style="border-color: var(--bca);" data-date="2026-06-20" data-time="10:00">
+    <!-- BCS040 -->
+    <div class="card" data-date="2026-12-05" data-time="10:00">
         <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> BCS012</div>
+            <div class="subject-title"><input type="checkbox"> BCS040</div>
             <div class="badge-container">
-                <div class="time-alert-box">⏰ 10:00 AM - 12:30 PM</div>
-                <div class="exam-date-box">20-06-2026<br>SATURDAY</div>
+                <div class="time-alert-box">⏰ 10:00 AM - 1:00 PM</div>
+                <div class="exam-date-box">05-12-2026<br>SATURDAY</div>
             </div>
         </div>
         <div class="card-countdown">Calculating time...</div>
         <div class="url-updater">
-            <input type="text" placeholder="Paste link..." id="in-b5">
-            <button onclick="changeVid('vid-b5', 'in-b5')">SET VIDEO</button>
+            <input type="text" placeholder="Paste YouTube Link..." id="in-bcs040">
+            <button onclick="changeVid('vid-bcs040', 'in-bcs040')">SET VIDEO</button>
         </div>
-        <div class="video-box" id="vid-b5">NO VIDEO ADDED</div>
+        <div class="video-box" id="vid-bcs040">NO VIDEO ADDED</div>
+        <textarea placeholder="Write important questions for BCS040 here..."></textarea>
+    </div>
+
+    <!-- MCS207 -->
+    <div class="card" data-date="2026-12-07" data-time="14:00">
+        <div class="header-row">
+            <div class="subject-title"><input type="checkbox"> MCS207</div>
+            <div class="badge-container">
+                <div class="time-alert-box">⏰ 2:00 PM - 5:00 PM</div>
+                <div class="exam-date-box">07-12-2026<br>MONDAY</div>
+            </div>
+        </div>
+        <div class="card-countdown">Calculating time...</div>
+        <div class="url-updater">
+            <input type="text" placeholder="Paste link..." id="in-mcs207">
+            <button onclick="changeVid('vid-mcs207', 'in-mcs207')">SET VIDEO</button>
+        </div>
+        <div class="video-box" id="vid-mcs207">NO VIDEO ADDED</div>
+        <textarea placeholder="Write important questions for MCS207 here..."></textarea>
+    </div>
+
+    <!-- MCS208 -->
+    <div class="card" data-date="2026-12-08" data-time="14:00">
+        <div class="header-row">
+            <div class="subject-title"><input type="checkbox"> MCS208</div>
+            <div class="badge-container">
+                <div class="time-alert-box">⏰ 2:00 PM - 5:00 PM</div>
+                <div class="exam-date-box">08-12-2026<br>TUESDAY</div>
+            </div>
+        </div>
+        <div class="card-countdown">Calculating time...</div>
+        <div class="url-updater">
+            <input type="text" placeholder="Paste link..." id="in-mcs208">
+            <button onclick="changeVid('vid-mcs208', 'in-mcs208')">SET VIDEO</button>
+        </div>
+        <div class="video-box" id="vid-mcs208">NO VIDEO ADDED</div>
+        <textarea placeholder="Write important questions for MCS208 here..."></textarea>
+    </div>
+
+    <!-- BEVAE181 -->
+    <div class="card" data-date="2027-01-13" data-time="10:00">
+        <div class="header-row">
+            <div class="subject-title"><input type="checkbox"> BEVAE181</div>
+            <div class="badge-container">
+                <div class="time-alert-box">⏰ 10:00 AM - 1:00 PM</div>
+                <div class="exam-date-box">13-01-2027<br>WEDNESDAY</div>
+            </div>
+        </div>
+        <div class="card-countdown">Calculating time...</div>
+        <div class="url-updater">
+            <input type="text" placeholder="Paste link..." id="in-bevae181">
+            <button onclick="changeVid('vid-bevae181', 'in-bevae181')">SET VIDEO</button>
+        </div>
+        <div class="video-box" id="vid-bevae181">NO VIDEO ADDED</div>
+        <textarea placeholder="Write important questions for BEVAE181 here..."></textarea>
     </div>
 </div>
 
