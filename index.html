@@ -34,16 +34,18 @@
 
         .container { max-width: 900px; margin: 0 auto; }
 
-        /* Top Navigation */
         .navbar {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
             background: var(--card-bg);
             backdrop-filter: blur(12px);
             padding: 12px 24px;
             border-radius: 14px;
             border: 1px solid var(--card-border);
-            margin-bottom: 30px;
+            margin-bottom: 24px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .nav-link {
@@ -58,15 +60,51 @@
 
         .nav-link:hover { color: #fff; }
 
+        .btn-action {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
         h1 { 
             text-align: center; 
             font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        /* Stats Bar */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-value { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+        .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
 
         .section-header { 
             background: var(--card-bg);
@@ -74,7 +112,7 @@
             border-left: 4px solid var(--accent);
             padding: 20px; 
             border-radius: 14px; 
-            margin-bottom: 30px; 
+            margin-bottom: 24px; 
             text-align: center; 
         }
 
@@ -86,7 +124,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Interactive Clickable Exam Centre Banner */
         .center-link { 
             display: inline-flex; 
             align-items: center;
@@ -110,7 +147,36 @@
             color: #fff;
             border-color: var(--warning);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 159, 67, 0.2);
+        }
+
+        /* Controls / Search Bar */
+        .controls-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 10px 16px;
+            border-radius: 10px;
+            color: var(--text-main);
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .filter-select {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 10px 16px;
+            border-radius: 10px;
+            outline: none;
+            font-size: 0.9rem;
+            cursor: pointer;
         }
 
         /* Subject Card */
@@ -125,9 +191,7 @@
             transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .card:hover {
-            border-color: rgba(0, 242, 255, 0.3);
-        }
+        .card:hover { border-color: rgba(0, 242, 255, 0.3); }
 
         .header-row { 
             display: flex; 
@@ -163,7 +227,15 @@
         .exam-date-box { background: rgba(255, 71, 87, 0.15); color: var(--danger); border: 1px solid rgba(255, 71, 87, 0.3); }
         .time-alert-box { background: rgba(255, 159, 67, 0.15); color: var(--warning); border: 1px solid rgba(255, 159, 67, 0.3); }
 
-        /* Countdown Indicator */
+        .card-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
         .card-countdown { 
             display: inline-block; 
             background: rgba(0, 0, 0, 0.4); 
@@ -174,10 +246,59 @@
             font-family: monospace; 
             font-size: 0.85rem; 
             border: 1px solid var(--card-border); 
-            margin-bottom: 16px; 
         }
 
         .countdown-expired { color: var(--danger); border-color: rgba(255, 71, 87, 0.3); }
+
+        .cal-btn {
+            background: rgba(46, 213, 115, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(46, 213, 115, 0.3);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .cal-btn:hover { background: var(--success); color: #000; }
+
+        /* Syllabus Topics Checklist */
+        .syllabus-box {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+
+        .syllabus-header {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .topic-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+        }
+
+        .topic-item input { accent-color: var(--accent); }
 
         /* Inputs & Controls */
         .url-updater { 
@@ -234,7 +355,7 @@
 
         textarea { 
             width: 100%; 
-            height: 90px; 
+            height: 85px; 
             background: rgba(0, 0, 0, 0.3); 
             border: 1px solid var(--card-border); 
             color: var(--text-main); 
@@ -249,12 +370,7 @@
 
         textarea:focus { border-color: var(--accent); }
 
-        input[type="checkbox"] { 
-            width: 18px;
-            height: 18px;
-            accent-color: var(--accent); 
-            cursor: pointer;
-        }
+        input[type="file"] { display: none; }
     </style>
 </head>
 <body>
@@ -262,9 +378,29 @@
 <div class="container">
     <nav class="navbar">
         <a href="datesheet.html" class="nav-link">View Date Sheet Schedule →</a>
+        <div style="display: flex; gap: 8px;">
+            <button class="btn-action" onclick="exportData()">Export Backup</button>
+            <button class="btn-action" onclick="document.getElementById('importFile').click()">Import Backup</button>
+            <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+        </div>
     </nav>
 
     <h1>Master Study Vault</h1>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value" id="stat-total">5</div>
+            <div class="stat-label">Total Subjects</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="stat-pending">5</div>
+            <div class="stat-label">Pending Exams</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="stat-completed">0</div>
+            <div class="stat-label">Completed</div>
+        </div>
+    </div>
 
     <div class="section-header">
         <div class="section-title">BCA Semester Examination Module</div>
@@ -273,8 +409,17 @@
         </a>
     </div>
 
+    <div class="controls-bar">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search by subject code..." oninput="filterCards()">
+        <select id="statusFilter" class="filter-select" onchange="filterCards()">
+            <option value="all">All Exams</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+        </select>
+    </div>
+
     <!-- Subject: BCS131 -->
-    <div class="card" id="card-bcs131" data-date="2026-12-04" data-time="10:00">
+    <div class="card" id="card-bcs131" data-code="bcs131" data-date="2026-12-04" data-time="10:00" data-end="13:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox" onchange="saveState('bcs131')"> BCS131</div>
             <div class="badge-container">
@@ -282,7 +427,21 @@
                 <div class="badge exam-date-box">04-12-2026 | FRIDAY</div>
             </div>
         </div>
-        <div class="card-countdown">Calculating remaining time...</div>
+        <div class="card-actions">
+            <div class="card-countdown">Calculating remaining time...</div>
+            <a href="#" class="cal-btn" onclick="addToCalendar('BCS131 Exam', '2026-12-04', '10:00', '13:00')">📅 Add to Calendar</a>
+        </div>
+        <div class="syllabus-box">
+            <div class="syllabus-header">
+                <span>Key Unit Progress</span>
+                <span id="prog-bcs131">0%</span>
+            </div>
+            <div class="topic-list">
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('bcs131')"> Unit 1: Programming Basics</label>
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('bcs131')"> Unit 2: Data Types & Control</label>
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('bcs131')"> Unit 3: Functions & Arrays</label>
+            </div>
+        </div>
         <div class="url-updater">
             <input type="text" placeholder="Paste YouTube Link..." id="in-bcs131">
             <button onclick="changeVid('vid-bcs131', 'in-bcs131', 'bcs131')">SET VIDEO</button>
@@ -292,7 +451,7 @@
     </div>
 
     <!-- Subject: BCS040 -->
-    <div class="card" id="card-bcs040" data-date="2026-12-05" data-time="10:00">
+    <div class="card" id="card-bcs040" data-code="bcs040" data-date="2026-12-05" data-time="10:00" data-end="13:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox" onchange="saveState('bcs040')"> BCS040</div>
             <div class="badge-container">
@@ -300,7 +459,21 @@
                 <div class="badge exam-date-box">05-12-2026 | SATURDAY</div>
             </div>
         </div>
-        <div class="card-countdown">Calculating remaining time...</div>
+        <div class="card-actions">
+            <div class="card-countdown">Calculating remaining time...</div>
+            <a href="#" class="cal-btn" onclick="addToCalendar('BCS040 Exam', '2026-12-05', '10:00', '13:00')">📅 Add to Calendar</a>
+        </div>
+        <div class="syllabus-box">
+            <div class="syllabus-header">
+                <span>Key Unit Progress</span>
+                <span id="prog-bcs040">0%</span>
+            </div>
+            <div class="topic-list">
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('bcs040')"> Unit 1: Statistical Concepts</label>
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('bcs040')"> Unit 2: Probability Theory</label>
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('bcs040')"> Unit 3: Sampling & Estimation</label>
+            </div>
+        </div>
         <div class="url-updater">
             <input type="text" placeholder="Paste YouTube Link..." id="in-bcs040">
             <button onclick="changeVid('vid-bcs040', 'in-bcs040', 'bcs040')">SET VIDEO</button>
@@ -310,7 +483,7 @@
     </div>
 
     <!-- Subject: MCS207 -->
-    <div class="card" id="card-mcs207" data-date="2026-12-07" data-time="14:00">
+    <div class="card" id="card-mcs207" data-code="mcs207" data-date="2026-12-07" data-time="14:00" data-end="17:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox" onchange="saveState('mcs207')"> MCS207</div>
             <div class="badge-container">
@@ -318,7 +491,21 @@
                 <div class="badge exam-date-box">07-12-2026 | MONDAY</div>
             </div>
         </div>
-        <div class="card-countdown">Calculating remaining time...</div>
+        <div class="card-actions">
+            <div class="card-countdown">Calculating remaining time...</div>
+            <a href="#" class="cal-btn" onclick="addToCalendar('MCS207 Exam', '2026-12-07', '14:00', '17:00')">📅 Add to Calendar</a>
+        </div>
+        <div class="syllabus-box">
+            <div class="syllabus-header">
+                <span>Key Unit Progress</span>
+                <span id="prog-mcs207">0%</span>
+            </div>
+            <div class="topic-list">
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('mcs207')"> Unit 1: Database Architecture</label>
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('mcs207')"> Unit 2: SQL & Relational Algebra</label>
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('mcs207')"> Unit 3: Normalization & Transactions</label>
+            </div>
+        </div>
         <div class="url-updater">
             <input type="text" placeholder="Paste YouTube Link..." id="in-mcs207">
             <button onclick="changeVid('vid-mcs207', 'in-mcs207', 'mcs207')">SET VIDEO</button>
@@ -328,7 +515,7 @@
     </div>
 
     <!-- Subject: MCS208 -->
-    <div class="card" id="card-mcs208" data-date="2026-12-08" data-time="14:00">
+    <div class="card" id="card-mcs208" data-code="mcs208" data-date="2026-12-08" data-time="14:00" data-end="17:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox" onchange="saveState('mcs208')"> MCS208</div>
             <div class="badge-container">
@@ -336,7 +523,21 @@
                 <div class="badge exam-date-box">08-12-2026 | TUESDAY</div>
             </div>
         </div>
-        <div class="card-countdown">Calculating remaining time...</div>
+        <div class="card-actions">
+            <div class="card-countdown">Calculating remaining time...</div>
+            <a href="#" class="cal-btn" onclick="addToCalendar('MCS208 Exam', '2026-12-08', '14:00', '17:00')">📅 Add to Calendar</a>
+        </div>
+        <div class="syllabus-box">
+            <div class="syllabus-header">
+                <span>Key Unit Progress</span>
+                <span id="prog-mcs208">0%</span>
+            </div>
+            <div class="topic-list">
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('mcs208')"> Unit 1: Data Structures Basics</label>
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('mcs208')"> Unit 2: Trees & Graphs</label>
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('mcs208')"> Unit 3: Sorting & Searching</label>
+            </div>
+        </div>
         <div class="url-updater">
             <input type="text" placeholder="Paste YouTube Link..." id="in-mcs208">
             <button onclick="changeVid('vid-mcs208', 'in-mcs208', 'mcs208')">SET VIDEO</button>
@@ -346,7 +547,7 @@
     </div>
 
     <!-- Subject: BEVAE181 -->
-    <div class="card" id="card-bevae181" data-date="2027-01-13" data-time="10:00">
+    <div class="card" id="card-bevae181" data-code="bevae181" data-date="2027-01-13" data-time="10:00" data-end="13:00">
         <div class="header-row">
             <div class="subject-title"><input type="checkbox" onchange="saveState('bevae181')"> BEVAE181</div>
             <div class="badge-container">
@@ -354,7 +555,21 @@
                 <div class="badge exam-date-box">13-01-2027 | WEDNESDAY</div>
             </div>
         </div>
-        <div class="card-countdown">Calculating remaining time...</div>
+        <div class="card-actions">
+            <div class="card-countdown">Calculating remaining time...</div>
+            <a href="#" class="cal-btn" onclick="addToCalendar('BEVAE181 Exam', '2027-01-13', '10:00', '13:00')">📅 Add to Calendar</a>
+        </div>
+        <div class="syllabus-box">
+            <div class="syllabus-header">
+                <span>Key Unit Progress</span>
+                <span id="prog-bevae181">0%</span>
+            </div>
+            <div class="topic-list">
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('bevae181')"> Unit 1: Ecosystems & Biodiversity</label>
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('bevae181')"> Unit 2: Natural Resources</label>
+                <label class="topic-item"><input type="checkbox" onchange="updateSyllabus('bevae181')"> Unit 3: Environmental Issues</label>
+            </div>
+        </div>
         <div class="url-updater">
             <input type="text" placeholder="Paste YouTube Link..." id="in-bevae181">
             <button onclick="changeVid('vid-bevae181', 'in-bevae181', 'bevae181')">SET VIDEO</button>
@@ -365,9 +580,12 @@
 </div>
 
 <script>
+    const SUBJECT_CODES = ['bcs131', 'bcs040', 'mcs207', 'mcs208', 'bevae181'];
+
     function checkExamExpiryAndTimers() {
         const now = new Date();
         const cards = document.querySelectorAll('.card');
+        let completedCount = 0;
 
         cards.forEach(card => {
             const expiryDateStr = card.getAttribute('data-date');
@@ -378,8 +596,10 @@
                 const expiryDateTime = new Date(`${expiryDateStr}T${expiryTimeStr}:00`);
 
                 if (now > expiryDateTime) {
+                    completedCount++;
+                    card.setAttribute('data-status', 'completed');
                     const videoBox = card.querySelector('.video-box');
-                    const checkbox = card.querySelector('input[type="checkbox"]');
+                    const checkbox = card.querySelector('.subject-title input[type="checkbox"]');
                     
                     if (videoBox && !videoBox.classList.contains('exam-expired')) {
                         videoBox.innerHTML = "🏁 EXAM COMPLETED";
@@ -391,6 +611,7 @@
                         countdownBox.classList.add('countdown-expired');
                     }
                 } else {
+                    card.setAttribute('data-status', 'pending');
                     if (countdownBox) {
                         const timeDifference = expiryDateTime - now;
 
@@ -409,9 +630,33 @@
                 }
             }
         });
+
+        document.getElementById('stat-completed').innerText = completedCount;
+        document.getElementById('stat-pending').innerText = cards.length - completedCount;
+    }
+
+    function filterCards() {
+        const query = document.getElementById('searchInput').value.toLowerCase().trim();
+        const filter = document.getElementById('statusFilter').value;
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            const code = card.getAttribute('data-code').toLowerCase();
+            const status = card.getAttribute('data-status');
+
+            const matchesSearch = code.includes(query);
+            const matchesFilter = (filter === 'all') || (status === filter);
+
+            if (matchesSearch && matchesFilter) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
     }
 
     function extractYouTubeId(url) {
+        if (!url) return null;
         if (url.includes('v=')) return url.split('v=')[1].split('&')[0];
         if (url.includes('youtu.be/')) return url.split('youtu.be/')[1].split('?')[0];
         return null;
@@ -436,8 +681,22 @@
         }
     }
 
+    function updateSyllabus(code) {
+        const card = document.getElementById(`card-${code}`);
+        const checkboxes = card.querySelectorAll('.syllabus-box .topic-list input[type="checkbox"]');
+        let checked = 0;
+
+        checkboxes.forEach((cb, idx) => {
+            if (cb.checked) checked++;
+            localStorage.setItem(`syll_${code}_${idx}`, cb.checked);
+        });
+
+        const percent = Math.round((checked / checkboxes.length) * 100);
+        document.getElementById(`prog-${code}`).innerText = `${percent}%`;
+    }
+
     function saveState(code) {
-        const isChecked = document.querySelector(`#card-${code} input[type="checkbox"]`).checked;
+        const isChecked = document.querySelector(`#card-${code} .subject-title input[type="checkbox"]`).checked;
         const textNotes = document.getElementById(`txt-${code}`).value;
         
         localStorage.setItem(`check_${code}`, isChecked);
@@ -445,13 +704,14 @@
     }
 
     function loadState() {
-        ['bcs131', 'bcs040', 'mcs207', 'mcs208', 'bevae181'].forEach(code => {
+        SUBJECT_CODES.forEach(code => {
+            const card = document.getElementById(`card-${code}`);
             const savedCheck = localStorage.getItem(`check_${code}`);
             const savedNotes = localStorage.getItem(`notes_${code}`);
             const savedVid = localStorage.getItem(`vid_${code}`);
 
             if (savedCheck !== null) {
-                document.querySelector(`#card-${code} input[type="checkbox"]`).checked = (savedCheck === 'true');
+                card.querySelector('.subject-title input[type="checkbox"]').checked = (savedCheck === 'true');
             }
             if (savedNotes !== null) {
                 document.getElementById(`txt-${code}`).value = savedNotes;
@@ -459,7 +719,52 @@
             if (savedVid) {
                 document.getElementById(`vid-${code}`).innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${savedVid}" allowfullscreen></iframe>`;
             }
+
+            const syllabusBoxes = card.querySelectorAll('.syllabus-box .topic-list input[type="checkbox"]');
+            syllabusBoxes.forEach((cb, idx) => {
+                const checkedState = localStorage.getItem(`syll_${code}_${idx}`);
+                if (checkedState !== null) cb.checked = (checkedState === 'true');
+            });
+            updateSyllabus(code);
         });
+    }
+
+    function addToCalendar(title, dateStr, startTime, endTime) {
+        const start = `${dateStr.replace(/-/g, '')}T${startTime.replace(':', '')}00`;
+        const end = `${dateStr.replace(/-/g, '')}T${endTime.replace(':', '')}00`;
+        const location = "UIET Block-2, Sector 25, Chandigarh";
+        const calUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&location=${encodeURIComponent(location)}&details=BCA+Examination+Module`;
+        window.open(calUrl, '_blank');
+    }
+
+    function exportData() {
+        const dump = {};
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            dump[key] = localStorage.getItem(key);
+        }
+        const blob = new Blob([JSON.stringify(dump, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `academic_vault_backup_${new Date().toISOString().slice(0,10)}.json`;
+        a.click();
+    }
+
+    function importData(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+            try {
+                const parsed = JSON.parse(evt.target.result);
+                Object.keys(parsed).forEach(k => localStorage.setItem(k, parsed[k]));
+                alert("Backup restored successfully!");
+                loadState();
+            } catch(err) {
+                alert("Invalid backup file format!");
+            }
+        };
+        reader.readAsText(file);
     }
 
     window.onload = function() {
