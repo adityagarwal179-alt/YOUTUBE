@@ -86,12 +86,31 @@
             letter-spacing: 0.5px;
         }
 
+        /* Interactive Clickable Exam Centre Banner */
         .center-link { 
-            display: block; 
-            font-size: 0.85rem; 
-            margin-top: 6px; 
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem; 
+            margin-top: 10px; 
             color: var(--warning); 
-            font-weight: 500;
+            font-weight: 600;
+            text-decoration: none;
+            background: rgba(255, 159, 67, 0.1);
+            border: 1px solid rgba(255, 159, 67, 0.3);
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .center-link:hover { 
+            background: rgba(255, 159, 67, 0.25);
+            color: #fff;
+            border-color: var(--warning);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 159, 67, 0.2);
         }
 
         /* Subject Card */
@@ -249,9 +268,9 @@
 
     <div class="section-header">
         <div class="section-title">BCA Semester Examination Module</div>
-        <span class="center-link">
-            ⚠️ Exam Centre Link: UIET Block-2, Sector 25, Chandigarh[cite: 1]
-        </span>
+        <a href="https://maps.app.goo.gl/iDgK7VUtW11rHW8y8" target="_blank" class="center-link">
+            📍 Exam Centre Location: UIET Block-2, Sector 25, Chandigarh ↗
+        </a>
     </div>
 
     <!-- Subject: BCS131 -->
@@ -417,7 +436,6 @@
         }
     }
 
-    /* Save inputs dynamically into LocalStorage */
     function saveState(code) {
         const isChecked = document.querySelector(`#card-${code} input[type="checkbox"]`).checked;
         const textNotes = document.getElementById(`txt-${code}`).value;
