@@ -3,94 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date Sheet</title>
+    <title>Academic Examination Schedule</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --bg: #050505; 
-            --card: #121212; 
+            --bg: #090d16; 
+            --card-bg: rgba(22, 28, 45, 0.7); 
+            --card-border: rgba(255, 255, 255, 0.08); 
             --accent: #00f2ff; 
-            --expired: #ff3c3c;
-            --success: #00ff00;
+            --accent-gradient: linear-gradient(135deg, #00f2ff, #0066ff);
+            --expired: #ff4757;
+            --success: #2ed573;
+            --text-main: #f1f2f6;
+            --text-muted: #a4b0be;
         }
-        body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 20px; }
-        .container { max-width: 900px; margin: 0 auto; }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        h1 { text-align: center; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; color: #fff; }
-        
-        /* Progress Bar Section Styling */
-        .progress-container {
-            background: var(--card);
-            border: 1px solid #222;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: var(--text-main); 
+            min-height: 100vh;
+            padding: 40px 20px; 
+            line-height: 1.6;
         }
+
+        .container { max-width: 950px; margin: 0 auto; }
+        
+        .header-title { 
+            text-align: center; 
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px; 
+            margin-bottom: 30px; 
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Dashboard Card */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Progress Bar Section */
         .progress-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-weight: bold;
+            font-weight: 600;
+            color: var(--text-muted);
         }
+
         .progress-bar-bg {
             width: 100%;
-            height: 12px;
-            background: #1a1a1a;
-            border-radius: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
             overflow: hidden;
-            border: 1px solid #333;
+            border: 1px solid var(--card-border);
         }
+
         .progress-bar-fill {
             height: 100%;
-            width: 0%; /* Dynamic */
-            background: linear-gradient(90deg, var(--accent), var(--success));
-            box-shadow: 0 0 15px var(--accent);
-            transition: width 1s ease-in-out;
+            width: 0%;
+            background: linear-gradient(90deg, #00f2ff, #2ed573);
+            box-shadow: 0 0 12px rgba(0, 242, 255, 0.4);
+            transition: width 0.8s ease-in-out;
         }
 
         /* Table Styling */
-        table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 30px; border: 1px solid #222; }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #222; }
-        th { background: #000; color: var(--accent); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; border-bottom: 2px solid #222; }
-        td { color: #ccc; font-size: 0.9rem; transition: all 0.3s ease; }
-        tr { transition: background 0.3s; }
-        tr:hover:not(.completed-row) { background: rgba(0,242,255,0.05); }
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            background: var(--card-bg); 
+            backdrop-filter: blur(12px);
+            text-align: left;
+        }
+
+        th, td { padding: 16px 20px; font-size: 0.9rem; }
+
+        th { 
+            background: rgba(0, 0, 0, 0.4); 
+            color: var(--accent); 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            letter-spacing: 1.2px; 
+            border-bottom: 1px solid var(--card-border); 
+        }
+
+        td { 
+            color: var(--text-main); 
+            border-bottom: 1px solid var(--card-border); 
+            transition: background 0.2s ease;
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover:not(.completed-row) { background: rgba(255, 255, 255, 0.03); }
         
-        /* Expired / Completed Row Styling */
+        /* Status Badges */
         .completed-row td {
             text-decoration: line-through;
-            color: #444 !important;
-            border-bottom: 1px solid #151515;
+            color: rgba(255, 255, 255, 0.25) !important;
         }
-        .completed-row {
-            background: rgba(255, 60, 60, 0.02) !important;
-        }
+
         .status-badge {
             font-size: 0.75rem;
-            font-weight: bold;
-            padding: 3px 8px;
-            border-radius: 5px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
             text-transform: uppercase;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
             text-decoration: none !important;
         }
-        .status-active { background: rgba(0, 242, 255, 0.1); color: var(--accent); }
-        .status-done { background: rgba(255, 60, 60, 0.1); color: var(--expired); text-decoration: none !important; }
 
-        .back-link { display: block; text-align: center; color: var(--accent); text-decoration: none; font-weight: bold; margin-top: 20px; transition: 0.3s; }
-        .back-link:hover { text-decoration: underline; color: #fff; }
+        .status-active { 
+            background: rgba(0, 242, 255, 0.1); 
+            color: var(--accent); 
+            border: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        .status-done { 
+            background: rgba(255, 71, 87, 0.1); 
+            color: var(--expired); 
+            border: 1px solid rgba(255, 71, 87, 0.2);
+        }
+
+        /* Navigation Button */
+        .back-link { 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px;
+            margin-top: 24px;
+            color: var(--accent); 
+            text-decoration: none; 
+            font-weight: 600; 
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover { 
+            background: rgba(0, 242, 255, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Date Sheet</h1>
+        <h1 class="header-title">Examination Schedule</h1>
         
-        <div class="progress-container">
+        <div class="glass-card">
             <div class="progress-header">
-                <span>Course Progress Status</span>
+                <span>Course Completion Status</span>
                 <span id="progress-text">0% Completed</span>
             </div>
             <div class="progress-bar-bg">
@@ -98,27 +190,29 @@
             </div>
         </div>
 
-        <table id="exam-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Day</th>
-                    <th>Time</th>
-                    <th>Subject</th>
-                    <th>Status</th>
-                    <th>Imp. Questions</th>
-                </tr>
-            </thead>
-            <tbody id="table-body">
-                <tr data-date="2026-12-04" data-endtime="13:00"><td>04-12-2026</td><td>FRIDAY</td><td>10:00 AM - 1:00 PM</td><td>BCS131</td><td><span class="status-badge status-active">PENDING</span></td><td></td></tr>
-                <tr data-date="2026-12-05" data-endtime="13:00"><td>05-12-2026</td><td>SATURDAY</td><td>10:00 AM - 1:00 PM</td><td>BCS040</td><td><span class="status-badge status-active">PENDING</span></td><td></td></tr>
-                <tr data-date="2026-12-07" data-endtime="17:00"><td>07-12-2026</td><td>MONDAY</td><td>2:00 PM - 5:00 PM</td><td>MCS207</td><td><span class="status-badge status-active">PENDING</span></td><td></td></tr>
-                <tr data-date="2026-12-08" data-endtime="17:00"><td>08-12-2026</td><td>TUESDAY</td><td>2:00 PM - 5:00 PM</td><td>MCS208</td><td><span class="status-badge status-active">PENDING</span></td><td></td></tr>
-                <tr data-date="2027-01-13" data-endtime="13:00"><td>13-01-2027</td><td>WEDNESDAY</td><td>10:00 AM - 1:00 PM</td><td>BEVAE181</td><td><span class="status-badge status-active">PENDING</span></td><td></td></tr>
-            </tbody>
-        </table>
+        <div class="table-wrapper">
+            <table id="exam-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Subject Code</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Dates updated to match 2026/2027 academic flow -->
+                    <tr data-date="2026-12-04" data-endtime="13:00"><td>04-12-2026</td><td>FRIDAY</td><td>10:00 AM - 1:00 PM</td><td>BCS131</td><td><span class="status-badge status-active">PENDING</span></td></tr>
+                    <tr data-date="2026-12-05" data-endtime="13:00"><td>05-12-2026</td><td>SATURDAY</td><td>10:00 AM - 1:00 PM</td><td>BCS040</td><td><span class="status-badge status-active">PENDING</span></td></tr>
+                    <tr data-date="2026-12-07" data-endtime="17:00"><td>07-12-2026</td><td>MONDAY</td><td>2:00 PM - 5:00 PM</td><td>MCS207</td><td><span class="status-badge status-active">PENDING</span></td></tr>
+                    <tr data-date="2026-12-08" data-endtime="17:00"><td>08-12-2026</td><td>TUESDAY</td><td>2:00 PM - 5:00 PM</td><td>MCS208</td><td><span class="status-badge status-active">PENDING</span></td></tr>
+                    <tr data-date="2027-01-13" data-endtime="13:00"><td>13-01-2027</td><td>WEDNESDAY</td><td>10:00 AM - 1:00 PM</td><td>BEVAE181</td><td><span class="status-badge status-active">PENDING</span></td></tr>
+                </tbody>
+            </table>
+        </div>
         
-        <a href="index.html" class="back-link">← Back to Home</a>
+        <a href="index.html" class="back-link">← Return to Master Vault</a>
     </div>
 
     <script>
@@ -129,7 +223,6 @@
             
             let completedCount = 0;
             const totalExams = rows.length;
-
             const activeRows = [];
             const completedRows = [];
 
@@ -143,12 +236,12 @@
 
                     if (now > examEndDateTime) {
                         row.classList.add('completed-row');
-                        statusCell.innerHTML = `<span class="status-badge status-done">DONE 🏁</span>`;
+                        statusCell.innerHTML = `<span class="status-badge status-done">Completed 🏁</span>`;
                         completedCount++;
                         completedRows.push(row);
                     } else {
                         row.classList.remove('completed-row');
-                        statusCell.innerHTML = `<span class="status-badge status-active">PENDING</span>`;
+                        statusCell.innerHTML = `<span class="status-badge status-active">Pending</span>`;
                         activeRows.push(row);
                     }
                 }
@@ -162,7 +255,7 @@
             const bRemaining = totalExams - completedCount;
             
             document.getElementById('progress-fill').style.width = `${percentage}%`;
-            document.getElementById('progress-text').innerText = `${percentage}% Over (${bRemaining} Remaining)`;
+            document.getElementById('progress-text').innerText = `${percentage}% Completed (${bRemaining} Remaining)`;
         }
 
         window.onload = function() {
