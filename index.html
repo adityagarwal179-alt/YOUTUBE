@@ -3,144 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Academic Vault 2027/2028</title>
-    <nav style="text-align: center; margin: 15px auto 30px auto; max-width: 850px; background: rgba(18, 18, 18, 0.8); padding: 15px; border-radius: 15px; border: 1px solid #222; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
-        <a href="datesheet.html" style="color: #00f2ff; font-weight: bold; text-decoration: none; font-size: 1rem; text-transform: uppercase; display: inline-block; margin: 0 20px; letter-spacing: 1px; transition: 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#00f2ff'">View Date Sheet</a>
-    </nav>
+    <title>Master Academic Vault</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --pharma: #ff4d6d; --bca: #00f2ff; --bg: #050505; --card: #121212; --accent: #00ff00; --highlight: #ffcc00; }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 10px; line-height: 1.6; }
-        .container { max-width: 900px; margin: 0 auto; }
-        h1 { text-align: center; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; color: #fff; }
-        .section-header { padding: 18px; border-radius: 12px; margin: 40px 0 20px; text-align: center; font-weight: 800; border: 2px solid; text-transform: uppercase; font-size: 1.2rem; }
-        .center-link { display: block; font-size: 0.85rem; text-transform: none; font-weight: 400; margin-top: 6px; color: #ccc; text-decoration: none; transition: color 0.2s, text-decoration 0.2s; cursor: pointer; }
-        .center-link:hover { color: #fff; text-decoration: underline; }
-        .pharma-bg { border-color: var(--pharma); color: var(--pharma); background: rgba(255, 77, 109, 0.1); }
-        .bca-bg { border-color: var(--bca); color: var(--bca); background: rgba(0, 242, 255, 0.1); }
-        .card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 35px; border: 1px solid #222; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
-        .card.custom-timing-highlight { border: 2px solid #ff4500; box-shadow: 0 0 15px rgba(255, 69, 0, 0.3); }
-        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; gap: 10px; }
-        .subject-title { font-size: 1.3rem; font-weight: bold; display: flex; align-items: center; gap: 10px; }
-        .badge-container { display: flex; gap: 10px; flex-wrap: wrap; }
-        .exam-date-box { background: #ff3c3c; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; text-align: center; min-width: 100px; }
-        .time-alert-box { background: #ff9f43; color: black; padding: 8px 15px; border-radius: 8px; font-weight: 900; font-size: 0.85rem; text-align: center; display: flex; align-items: center; justify-content: center; }
-        
-        /* Countdown element styling */
-        .card-countdown { display: inline-block; background: rgba(0, 0, 0, 0.6); color: var(--highlight); padding: 6px 14px; border-radius: 6px; font-weight: bold; font-family: monospace; font-size: 0.85rem; border: 1px dashed #444; margin-bottom: 15px; }
-        .countdown-expired { color: #ff3c3c; border-color: #ff3c3c; }
+        :root { 
+            --bg: #090d16; 
+            --card-bg: rgba(22, 28, 45, 0.7); 
+            --card-border: rgba(255, 255, 255, 0.08); 
+            --accent: #00f2ff; 
+            --accent-gradient: linear-gradient(135deg, #00f2ff, #0066ff);
+            --warning: #ff9f43;
+            --danger: #ff4757;
+            --success: #2ed573;
+            --text-main: #f1f2f6;
+            --text-muted: #a4b0be;
+        }
 
-        @keyframes pulse { 0% { opacity: 0.9; } 50% { opacity: 1; } 100% { opacity: 0.9; } }
-        .url-updater { display: flex; gap: 10px; margin-bottom: 15px; background: #000; padding: 10px; border-radius: 10px; border: 1px solid #333; }
-        .url-updater input { flex: 1; background: transparent; border: none; color: var(--accent); padding: 5px; font-size: 0.85rem; outline: none; }
-        .url-updater button { background: #222; color: #fff; border: 1px solid #444; padding: 5px 15px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: bold; transition: 0.2s; }
-        .url-updater button:hover { background: var(--accent); color: #000; border-color: var(--accent); }
-        .video-box { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 15px; overflow: hidden; margin-bottom: 20px; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: #444; font-style: italic; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: var(--text-main); 
+            min-height: 100vh;
+            padding: 20px; 
+            line-height: 1.6;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; }
+
+        /* Top Navigation */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            padding: 12px 24px;
+            border-radius: 14px;
+            border: 1px solid var(--card-border);
+            margin-bottom: 30px;
+        }
+
+        .nav-link {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover { color: #fff; }
+
+        h1 { 
+            text-align: center; 
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header { 
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-left: 4px solid var(--accent);
+            padding: 20px; 
+            border-radius: 14px; 
+            margin-bottom: 30px; 
+            text-align: center; 
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .center-link { 
+            display: block; 
+            font-size: 0.85rem; 
+            margin-top: 6px; 
+            color: var(--warning); 
+            font-weight: 500;
+        }
+
+        /* Subject Card */
+        .card { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(12px);
+            border-radius: 16px; 
+            padding: 24px; 
+            margin-bottom: 24px; 
+            border: 1px solid var(--card-border); 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 242, 255, 0.3);
+        }
+
+        .header-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 16px; 
+            padding-bottom: 16px; 
+            border-bottom: 1px solid var(--card-border); 
+            gap: 15px; 
+            flex-wrap: wrap;
+        }
+
+        .subject-title { 
+            font-size: 1.25rem; 
+            font-weight: 700; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+
+        .badge-container { display: flex; gap: 10px; flex-wrap: wrap; }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .exam-date-box { background: rgba(255, 71, 87, 0.15); color: var(--danger); border: 1px solid rgba(255, 71, 87, 0.3); }
+        .time-alert-box { background: rgba(255, 159, 67, 0.15); color: var(--warning); border: 1px solid rgba(255, 159, 67, 0.3); }
+
+        /* Countdown Indicator */
+        .card-countdown { 
+            display: inline-block; 
+            background: rgba(0, 0, 0, 0.4); 
+            color: var(--accent); 
+            padding: 6px 12px; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            font-family: monospace; 
+            font-size: 0.85rem; 
+            border: 1px solid var(--card-border); 
+            margin-bottom: 16px; 
+        }
+
+        .countdown-expired { color: var(--danger); border-color: rgba(255, 71, 87, 0.3); }
+
+        /* Inputs & Controls */
+        .url-updater { 
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 16px; 
+            background: rgba(0, 0, 0, 0.3); 
+            padding: 8px; 
+            border-radius: 10px; 
+            border: 1px solid var(--card-border); 
+        }
+
+        .url-updater input { 
+            flex: 1; 
+            background: transparent; 
+            border: none; 
+            color: var(--text-main); 
+            padding: 6px 10px; 
+            font-size: 0.85rem; 
+            outline: none; 
+        }
+
+        .url-updater button { 
+            background: var(--accent); 
+            color: #000; 
+            border: none; 
+            padding: 6px 16px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            transition: opacity 0.2s ease; 
+        }
+
+        .url-updater button:hover { opacity: 0.85; }
+
+        .video-box { 
+            width: 100%; 
+            aspect-ratio: 16/9; 
+            background: rgba(0, 0, 0, 0.4); 
+            border-radius: 12px; 
+            overflow: hidden; 
+            margin-bottom: 16px; 
+            border: 1px solid var(--card-border); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: var(--text-muted); 
+            font-size: 0.9rem;
+        }
+
         iframe { width: 100%; height: 100%; border: none; }
-        .exam-expired { color: #ff3c3c !important; font-weight: bold; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
-        textarea { width: 100%; height: 80px; background: #000; border: 1px solid #222; color: #ccc; border-radius: 12px; padding: 12px; margin-top: 20px; resize: none; font-size: 0.9rem; box-sizing: border-box; }
-        input[type="checkbox"] { transform: scale(1.5); accent-color: var(--accent); }
+        .exam-expired { color: var(--danger); font-weight: 700; letter-spacing: 0.5px; }
+
+        textarea { 
+            width: 100%; 
+            height: 90px; 
+            background: rgba(0, 0, 0, 0.3); 
+            border: 1px solid var(--card-border); 
+            color: var(--text-main); 
+            border-radius: 10px; 
+            padding: 12px; 
+            resize: vertical; 
+            font-size: 0.85rem; 
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        textarea:focus { border-color: var(--accent); }
+
+        input[type="checkbox"] { 
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent); 
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🚀 MASTER STUDY VAULT 2027/2028</h1>
+    <nav class="navbar">
+        <a href="datesheet.html" class="nav-link">View Date Sheet Schedule →</a>
+    </nav>
 
-    <div class="section-header bca-bg">
-        BCA 3RD SEMESTER EXAMINATION SCHEDULE (DEC 2027 - JAN 2028)
-        <span class="center-link" style="color: #ff9f43; font-style: italic; margin-top: 8px;">
-            ⚠️ Exam Centre Not Announced Yet / Form Pending
+    <h1>Master Study Vault</h1>
+
+    <div class="section-header">
+        <div class="section-title">BCA Semester Examination Module</div>
+        <span class="center-link">
+            ⚠️ Exam Centre Link: UIET Block-2, Sector 25, Chandigarh[cite: 1]
         </span>
     </div>
 
-    <!-- BCS131 -->
-    <div class="card" data-date="2027-12-04" data-time="10:00">
+    <!-- Subject: BCS131 -->
+    <div class="card" id="card-bcs131" data-date="2026-12-04" data-time="10:00">
         <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> BCS131</div>
+            <div class="subject-title"><input type="checkbox" onchange="saveState('bcs131')"> BCS131</div>
             <div class="badge-container">
-                <div class="time-alert-box">⏰ 10:00 AM - 1:00 PM</div>
-                <div class="exam-date-box">04-12-2027<br>FRIDAY</div>
+                <div class="badge time-alert-box">⏰ 10:00 AM - 1:00 PM</div>
+                <div class="badge exam-date-box">04-12-2026 | FRIDAY</div>
             </div>
         </div>
-        <div class="card-countdown">Calculating time...</div>
+        <div class="card-countdown">Calculating remaining time...</div>
         <div class="url-updater">
-            <input type="text" placeholder="Paste YouTube Link to change..." id="in-bcs131">
-            <button onclick="changeVid('vid-bcs131', 'in-bcs131')">SET VIDEO</button>
+            <input type="text" placeholder="Paste YouTube Link..." id="in-bcs131">
+            <button onclick="changeVid('vid-bcs131', 'in-bcs131', 'bcs131')">SET VIDEO</button>
         </div>
-        <div class="video-box" id="vid-bcs131">NO VIDEO ADDED</div>
-        <textarea placeholder="Write important questions for BCS131 here..."></textarea>
+        <div class="video-box" id="vid-bcs131">No resource attached</div>
+        <textarea id="txt-bcs131" placeholder="Write key revision questions for BCS131..." oninput="saveState('bcs131')"></textarea>
     </div>
 
-    <!-- BCS040 -->
-    <div class="card" data-date="2027-12-05" data-time="10:00">
+    <!-- Subject: BCS040 -->
+    <div class="card" id="card-bcs040" data-date="2026-12-05" data-time="10:00">
         <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> BCS040</div>
+            <div class="subject-title"><input type="checkbox" onchange="saveState('bcs040')"> BCS040</div>
             <div class="badge-container">
-                <div class="time-alert-box">⏰ 10:00 AM - 1:00 PM</div>
-                <div class="exam-date-box">05-12-2027<br>SATURDAY</div>
+                <div class="badge time-alert-box">⏰ 10:00 AM - 1:00 PM</div>
+                <div class="badge exam-date-box">05-12-2026 | SATURDAY</div>
             </div>
         </div>
-        <div class="card-countdown">Calculating time...</div>
+        <div class="card-countdown">Calculating remaining time...</div>
         <div class="url-updater">
             <input type="text" placeholder="Paste YouTube Link..." id="in-bcs040">
-            <button onclick="changeVid('vid-bcs040', 'in-bcs040')">SET VIDEO</button>
+            <button onclick="changeVid('vid-bcs040', 'in-bcs040', 'bcs040')">SET VIDEO</button>
         </div>
-        <div class="video-box" id="vid-bcs040">NO VIDEO ADDED</div>
-        <textarea placeholder="Write important questions for BCS040 here..."></textarea>
+        <div class="video-box" id="vid-bcs040">No resource attached</div>
+        <textarea id="txt-bcs040" placeholder="Write key revision questions for BCS040..." oninput="saveState('bcs040')"></textarea>
     </div>
 
-    <!-- MCS207 -->
-    <div class="card" data-date="2027-12-07" data-time="14:00">
+    <!-- Subject: MCS207 -->
+    <div class="card" id="card-mcs207" data-date="2026-12-07" data-time="14:00">
         <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> MCS207</div>
+            <div class="subject-title"><input type="checkbox" onchange="saveState('mcs207')"> MCS207</div>
             <div class="badge-container">
-                <div class="time-alert-box">⏰ 2:00 PM - 5:00 PM</div>
-                <div class="exam-date-box">07-12-2027<br>MONDAY</div>
+                <div class="badge time-alert-box">⏰ 2:00 PM - 5:00 PM</div>
+                <div class="badge exam-date-box">07-12-2026 | MONDAY</div>
             </div>
         </div>
-        <div class="card-countdown">Calculating time...</div>
+        <div class="card-countdown">Calculating remaining time...</div>
         <div class="url-updater">
-            <input type="text" placeholder="Paste link..." id="in-mcs207">
-            <button onclick="changeVid('vid-mcs207', 'in-mcs207')">SET VIDEO</button>
+            <input type="text" placeholder="Paste YouTube Link..." id="in-mcs207">
+            <button onclick="changeVid('vid-mcs207', 'in-mcs207', 'mcs207')">SET VIDEO</button>
         </div>
-        <div class="video-box" id="vid-mcs207">NO VIDEO ADDED</div>
-        <textarea placeholder="Write important questions for MCS207 here..."></textarea>
+        <div class="video-box" id="vid-mcs207">No resource attached</div>
+        <textarea id="txt-mcs207" placeholder="Write key revision questions for MCS207..." oninput="saveState('mcs207')"></textarea>
     </div>
 
-    <!-- MCS208 -->
-    <div class="card" data-date="2027-12-08" data-time="14:00">
+    <!-- Subject: MCS208 -->
+    <div class="card" id="card-mcs208" data-date="2026-12-08" data-time="14:00">
         <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> MCS208</div>
+            <div class="subject-title"><input type="checkbox" onchange="saveState('mcs208')"> MCS208</div>
             <div class="badge-container">
-                <div class="time-alert-box">⏰ 2:00 PM - 5:00 PM</div>
-                <div class="exam-date-box">08-12-2027<br>TUESDAY</div>
+                <div class="badge time-alert-box">⏰ 2:00 PM - 5:00 PM</div>
+                <div class="badge exam-date-box">08-12-2026 | TUESDAY</div>
             </div>
         </div>
-        <div class="card-countdown">Calculating time...</div>
+        <div class="card-countdown">Calculating remaining time...</div>
         <div class="url-updater">
-            <input type="text" placeholder="Paste link..." id="in-mcs208">
-            <button onclick="changeVid('vid-mcs208', 'in-mcs208')">SET VIDEO</button>
+            <input type="text" placeholder="Paste YouTube Link..." id="in-mcs208">
+            <button onclick="changeVid('vid-mcs208', 'in-mcs208', 'mcs208')">SET VIDEO</button>
         </div>
-        <div class="video-box" id="vid-mcs208">NO VIDEO ADDED</div>
-        <textarea placeholder="Write important questions for MCS208 here..."></textarea>
+        <div class="video-box" id="vid-mcs208">No resource attached</div>
+        <textarea id="txt-mcs208" placeholder="Write key revision questions for MCS208..." oninput="saveState('mcs208')"></textarea>
     </div>
 
-    <!-- BEVAE181 -->
-    <div class="card" data-date="2028-01-13" data-time="10:00">
+    <!-- Subject: BEVAE181 -->
+    <div class="card" id="card-bevae181" data-date="2027-01-13" data-time="10:00">
         <div class="header-row">
-            <div class="subject-title"><input type="checkbox"> BEVAE181</div>
+            <div class="subject-title"><input type="checkbox" onchange="saveState('bevae181')"> BEVAE181</div>
             <div class="badge-container">
-                <div class="time-alert-box">⏰ 10:00 AM - 1:00 PM</div>
-                <div class="exam-date-box">13-01-2028<br>WEDNESDAY</div>
+                <div class="badge time-alert-box">⏰ 10:00 AM - 1:00 PM</div>
+                <div class="badge exam-date-box">13-01-2027 | WEDNESDAY</div>
             </div>
         </div>
-        <div class="card-countdown">Calculating time...</div>
+        <div class="card-countdown">Calculating remaining time...</div>
         <div class="url-updater">
-            <input type="text" placeholder="Paste link..." id="in-bevae181">
-            <button onclick="changeVid('vid-bevae181', 'in-bevae181')">SET VIDEO</button>
+            <input type="text" placeholder="Paste YouTube Link..." id="in-bevae181">
+            <button onclick="changeVid('vid-bevae181', 'in-bevae181', 'bevae181')">SET VIDEO</button>
         </div>
-        <div class="video-box" id="vid-bevae181">NO VIDEO ADDED</div>
-        <textarea placeholder="Write important questions for BEVAE181 here..."></textarea>
+        <div class="video-box" id="vid-bevae181">No resource attached</div>
+        <textarea id="txt-bevae181" placeholder="Write key revision questions for BEVAE181..." oninput="saveState('bevae181')"></textarea>
     </div>
 </div>
 
@@ -157,13 +358,12 @@
             if (expiryDateStr && expiryTimeStr) {
                 const expiryDateTime = new Date(`${expiryDateStr}T${expiryTimeStr}:00`);
 
-                // Check Expiration/Completion Status
                 if (now > expiryDateTime) {
                     const videoBox = card.querySelector('.video-box');
                     const checkbox = card.querySelector('input[type="checkbox"]');
                     
                     if (videoBox && !videoBox.classList.contains('exam-expired')) {
-                        videoBox.innerHTML = "🏁 EXAM COMPLETED / TASK DONE";
+                        videoBox.innerHTML = "🏁 EXAM COMPLETED";
                         videoBox.classList.add('exam-expired');
                         if (checkbox) checkbox.checked = true;
                     }
@@ -172,7 +372,6 @@
                         countdownBox.classList.add('countdown-expired');
                     }
                 } else {
-                    // Update Active Countdown Timer Logic including Seconds
                     if (countdownBox) {
                         const timeDifference = expiryDateTime - now;
 
@@ -181,7 +380,7 @@
                         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
                         const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-                        let countdownText = "⏳ Remaining: ";
+                        let countdownText = "⏳ Time Remaining: ";
                         if (days > 0) countdownText += `${days}d `;
                         countdownText += `${hours}h ${minutes}m ${seconds}s`;
 
@@ -193,32 +392,63 @@
         });
     }
 
-    window.onload = function() {
-        checkExamExpiryAndTimers();
-        // Updated every second (1000ms) to display ticking seconds smoothly
-        setInterval(checkExamExpiryAndTimers, 1000); 
-    };
+    function extractYouTubeId(url) {
+        if (url.includes('v=')) return url.split('v=')[1].split('&')[0];
+        if (url.includes('youtu.be/')) return url.split('youtu.be/')[1].split('?')[0];
+        return null;
+    }
 
-    function changeVid(boxId, inputId) {
+    function changeVid(boxId, inputId, code) {
         const box = document.getElementById(boxId);
         if (box.classList.contains('exam-expired')) {
-            alert("This exam/task is already completed! Cannot change video.");
+            alert("This exam is completed! Video dynamic updates are disabled.");
             return;
         }
 
         const url = document.getElementById(inputId).value;
-        let id = "";
-        
-        if (url.includes('v=')) id = url.split('v=')[1].split('&')[0];
-        else if (url.includes('youtu.be/')) id = url.split('youtu.be/')[1].split('?')[0];
+        const id = extractYouTubeId(url);
 
         if (id) {
             box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}" allowfullscreen></iframe>`;
             document.getElementById(inputId).value = "";
+            localStorage.setItem(`vid_${code}`, id);
         } else {
-            alert("Invalid YouTube Link! Please paste a correct URL.");
+            alert("Invalid YouTube Link. Please provide a standard YouTube video URL.");
         }
     }
+
+    /* Save inputs dynamically into LocalStorage */
+    function saveState(code) {
+        const isChecked = document.querySelector(`#card-${code} input[type="checkbox"]`).checked;
+        const textNotes = document.getElementById(`txt-${code}`).value;
+        
+        localStorage.setItem(`check_${code}`, isChecked);
+        localStorage.setItem(`notes_${code}`, textNotes);
+    }
+
+    function loadState() {
+        ['bcs131', 'bcs040', 'mcs207', 'mcs208', 'bevae181'].forEach(code => {
+            const savedCheck = localStorage.getItem(`check_${code}`);
+            const savedNotes = localStorage.getItem(`notes_${code}`);
+            const savedVid = localStorage.getItem(`vid_${code}`);
+
+            if (savedCheck !== null) {
+                document.querySelector(`#card-${code} input[type="checkbox"]`).checked = (savedCheck === 'true');
+            }
+            if (savedNotes !== null) {
+                document.getElementById(`txt-${code}`).value = savedNotes;
+            }
+            if (savedVid) {
+                document.getElementById(`vid-${code}`).innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${savedVid}" allowfullscreen></iframe>`;
+            }
+        });
+    }
+
+    window.onload = function() {
+        loadState();
+        checkExamExpiryAndTimers();
+        setInterval(checkExamExpiryAndTimers, 1000); 
+    };
 </script>
 
 </body>
