@@ -141,7 +141,7 @@
 <body>
 <div class="container">
     <nav class="navbar">
-        <a href="datesheet.html" class="nav-link">View Date Sheet Schedule →</a>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;"><a href="datesheet.html" class="nav-link">Date Sheet →</a><a href="datesheet.html#admitCards" class="nav-link">Admit Cards &amp; Instructions →</a></div>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <button class="btn-action" id="btnAllIcs">📅 All Exams (.ics)</button>
             <button class="btn-action" id="btnExport">Export Backup</button>
@@ -240,6 +240,7 @@
                 <div class="cal-group">
                     <a class="cal-btn" href="${V.googleCalUrl(e)}" target="_blank" rel="noopener">📅 Google Calendar</a>
                     <button class="cal-btn" data-ics="${e.id}">⬇ .ics</button>
+                    <a class="cal-btn" href="${V.ADMIT_CARDS[e.program].file}" download="${V.ADMIT_CARDS[e.program].downloadName}">🎫 Admit Card</a>
                 </div>
             </div>
             <div class="box">
@@ -519,7 +520,7 @@
     }
 
     // ---------- Backup ----------
-    const KEY_RE = /^(check_|notes_|vid_|topics_|syll_|kit_)/;
+    const KEY_RE = /^(check_|notes_|vid_|topics_|syll_|kit_|ins_|ac_)/;
     function exportData() {
         const dump = {};
         try {
