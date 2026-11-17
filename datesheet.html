@@ -67,6 +67,53 @@
         details table { background: transparent; }
         .mine td { background: rgba(46,213,115,0.08); font-weight: 600; }
 
+
+        .section-title { font-size: 1.05rem; font-weight: 700; margin: 8px 0 14px; color: var(--text-main); letter-spacing: .3px; }
+        .ac-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-bottom: 30px; }
+        .ac-card { background: var(--card-bg); border: 1px solid var(--card-border); border-top: 4px solid var(--accent); border-radius: 16px; padding: 20px; box-shadow: 0 20px 40px rgba(0,0,0,.35); display: flex; flex-direction: column; gap: 14px; }
+        .ac-card.pharm { border-top-color: var(--success); }
+        .ac-title { font-size: 1rem; font-weight: 700; }
+        .ac-card dl > div { display: flex; gap: 10px; padding: 5px 0; border-bottom: 1px dashed var(--card-border); font-size: .82rem; }
+        .ac-card dl > div:last-child { border-bottom: none; }
+        .ac-card dt { flex: 0 0 120px; color: var(--text-muted); }
+        .ac-card dd { flex: 1; font-weight: 500; word-break: break-word; }
+        .ac-sub { font-size: .72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; margin-bottom: 6px; }
+        .ac-papers { list-style: none; font-size: .85rem; }
+        .ac-papers li { padding: 4px 0; }
+        .ac-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+        .btn { background: rgba(255,255,255,.06); color: var(--text-main); border: 1px solid var(--card-border); padding: 8px 14px; border-radius: 10px; font-size: .8rem; font-weight: 600; cursor: pointer; text-decoration: none; font-family: inherit; transition: all .2s ease; display: inline-flex; align-items: center; gap: 6px; }
+        .btn:hover { border-color: var(--accent); color: #fff; }
+        .btn.primary { background: var(--accent-gradient); color: #001018; border: none; }
+        .btn.primary:hover { opacity: .88; color: #001018; }
+        .ac-hint { font-size: .72rem; color: var(--text-muted); }
+        .ac-preview iframe { width: 100%; height: 520px; border: 1px solid var(--card-border); border-radius: 10px; background: #fff; }
+        .prep { display: flex; gap: 8px; align-items: flex-start; font-size: .82rem; margin-bottom: 6px; cursor: pointer; }
+        .prep input { accent-color: var(--success); margin-top: 4px; }
+
+        .glance { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 30px; }
+        .gl { background: rgba(255,71,87,.07); border: 1px solid rgba(255,71,87,.3); border-radius: 12px; padding: 14px; font-size: .82rem; }
+        .gl b { display: block; font-size: .88rem; margin: 4px 0 2px; }
+        .gl span.ic { font-size: 1.3rem; }
+        .gl p { color: var(--text-muted); }
+
+        .ins-block { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 18px 20px; margin-bottom: 20px; }
+        .ins-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; font-weight: 700; font-size: .92rem; }
+        .ins-count { font-size: .75rem; color: var(--text-muted); font-weight: 600; }
+        .ins-list { list-style: none; }
+        .ins { display: flex; gap: 12px; padding: 12px 10px; border-bottom: 1px solid var(--card-border); font-size: .88rem; align-items: flex-start; border-radius: 8px; }
+        .ins:last-child { border-bottom: none; }
+        .ins input { accent-color: var(--success); margin-top: 5px; width: 17px; height: 17px; flex: 0 0 auto; }
+        .ins.imp { background: rgba(255,71,87,.06); border-left: 3px solid var(--expired); }
+        .ins.na { opacity: .55; }
+        .ins.done .txt { color: var(--text-muted); }
+        .ins .no { font-weight: 700; color: var(--accent); min-width: 22px; }
+        .tag { font-size: .65rem; font-weight: 800; letter-spacing: .6px; padding: 2px 8px; border-radius: 20px; margin-right: 8px; text-transform: uppercase; white-space: nowrap; vertical-align: 1px; }
+        .tag.imp { background: rgba(255,71,87,.18); color: var(--expired); border: 1px solid rgba(255,71,87,.4); }
+        .tag.na { background: rgba(255,255,255,.08); color: var(--text-muted); border: 1px solid var(--card-border); }
+        .txt b { color: #fff; }
+        .ins.imp .txt b { color: #ffd1d6; }
+        @media print { .ac-preview, .ac-actions, .prep input, .ins input { display: none !important; } .ac-card, .ins-block, .gl { background: #fff; color: #000; border-color: #999; box-shadow: none; } .txt b, .ins.imp .txt b { color: #000; } .section-title { color: #000; } }
+
         .back-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; margin-top: 8px; color: var(--accent); text-decoration: none; font-weight: 600; border-radius: 12px; background: var(--card-bg); border: 1px solid var(--card-border); transition: all .3s ease; }
         .back-link:hover { background: rgba(0,242,255,0.1); border-color: var(--accent); transform: translateY(-2px); }
 
@@ -120,16 +167,23 @@
         </table>
     </div>
 
-    <details>
-        <summary>Reference: complete PSBTE Pharmacy date sheet — Nov 2026 (Evening, 1:30 PM – 4:30 PM)</summary>
-        <div class="table-wrapper" style="border:none; box-shadow:none; margin-bottom:12px;">
-            <table>
-                <thead><tr><th>Date</th><th>Day</th><th>Subject</th><th>Code</th><th>Year</th></tr></thead>
-                <tbody id="full-body"></tbody>
-            </table>
+    <section id="admitCards">
+        <h2 class="section-title">🎫 My Admit Cards</h2>
+        <div class="ac-grid" id="acGrid"></div>
+
+        <h2 class="section-title">📌 Read this first — key points</h2>
+        <div class="glance" id="glance"></div>
+
+        <h2 class="section-title">📋 Instructions from your admit cards</h2>
+        <div class="toolbar">
+            <button class="pill active" data-ins="all">All instructions</button>
+            <button class="pill" data-ins="imp">Important only</button>
+            <span class="spacer"></span>
+            <button class="pill" id="btnMarkAll">✔ Mark all as read</button>
+            <button class="pill" id="btnResetAll">Reset</button>
         </div>
-        <p style="font-size:.78rem; color:var(--text-muted); padding-bottom:14px;">Highlighted rows are the papers listed on your admit card (3012 and 3014).</p>
-    </details>
+        <div id="insWrap"></div>
+    </section>
 
     <a href="index.html" class="back-link">← Return to Master Vault</a>
 </div>
@@ -189,11 +243,98 @@
         } else box.hidden = true;
     }
 
-    // full pharmacy reference
-    document.getElementById('full-body').innerHTML = V.FULL_PSBTE.map(([d, subj, code, yr]) => {
-        const mine = V.EXAMS.some(e => e.program === 'pharm' && e.code === code);
-        return `<tr class="${mine ? 'mine' : ''}"><td class="nowrap">${V.fmtDate(d)}</td><td>${V.dayName(d)}</td><td>${subj}</td><td>${code}</td><td>${yr}</td></tr>`;
-    }).join('');
+
+
+    // ---------- Admit cards & instructions ----------
+    const AC = V.ADMIT_CARDS, store = V.store;
+    const $ = id => document.getElementById(id);
+    let onlyImp = false;
+
+    function renderAdmitCards() {
+        $('acGrid').innerHTML = Object.keys(AC).map(k => {
+            const a = AC[k], p = V.PROGRAMS[k];
+            const papers = V.sorted().filter(e => e.program === k).map(e =>
+                `<li><b>${e.code}</b>${e.name ? ' · ' + e.name : ''}<span class="sub">${V.fmtDate(e.date)} · ${V.dayName(e.date)} · ${V.timeRange(e)}</span></li>`).join('');
+            const rows = a.details.map(([l, v]) => `<div><dt>${l}</dt><dd>${v}</dd></div>`).join('');
+            const prep = a.before.map((t, i) =>
+                `<label class="prep"><input type="checkbox" data-prep="${k}:${i}" ${store.get(`ac_${k}_${i}`) === 'true' ? 'checked' : ''}><span>${t}</span></label>`).join('');
+            return `<article class="ac-card ${k}">
+                <div><span class="prog ${k}">${p.label}</span></div>
+                <div class="ac-title">${a.title}</div>
+                <dl>${rows}</dl>
+                <div><div class="ac-sub">Papers on this card</div><ul class="ac-papers">${papers}</ul></div>
+                <div class="ac-actions">
+                    <a class="btn primary" href="${a.file}" download="${a.downloadName}">⬇ Download PDF</a>
+                    <a class="btn" href="${a.file}" target="_blank" rel="noopener">👁 Open in new tab</a>
+                    <button class="btn" data-preview="${k}">🔍 Preview here</button>
+                </div>
+                <div class="ac-hint">If the download does not start, make sure the <b>admit_cards</b> folder sits next to this page.</div>
+                <div class="ac-preview" id="prev-${k}"></div>
+                <div><div class="ac-sub">Before exam day — tick when done</div>${prep}</div>
+            </article>`;
+        }).join('');
+    }
+
+    function renderGlance() {
+        $('glance').innerHTML = V.GLANCE.map(g =>
+            `<div class="gl"><span class="ic">${g.icon}</span><b>${g.title}</b><p>${g.text}</p></div>`).join('');
+    }
+
+    function renderInstructions() {
+        $('insWrap').innerHTML = Object.keys(AC).map(k => {
+            const a = AC[k], p = V.PROGRAMS[k];
+            const applicable = a.instructions.filter(x => !x.na);
+            const read = a.instructions.filter((x, i) => !x.na && store.get(`ins_${k}_${i}`) === 'true').length;
+            let n = 0;
+            const items = a.instructions.map((x, i) => {
+                const num = ++n;
+                if (onlyImp && !x.imp) return '';
+                const done = store.get(`ins_${k}_${i}`) === 'true';
+                const tag = x.na ? '<span class="tag na">Not applicable</span>' : x.imp ? '<span class="tag imp">Important</span>' : '';
+                return `<li class="ins ${x.imp ? 'imp' : ''} ${x.na ? 'na' : ''} ${done ? 'done' : ''}">
+                    <span class="no">${num}.</span>
+                    ${x.na ? '' : `<input type="checkbox" data-read="${k}:${i}" ${done ? 'checked' : ''} title="Mark as read">`}
+                    <div class="txt">${tag}${x.t}</div></li>`;
+            }).join('');
+            return `<div class="ins-block"><div class="ins-head"><span>${p.label} — ${a.title}</span>
+                <span class="ins-count">${read}/${applicable.length} read</span></div>
+                <ul class="ins-list">${items}</ul></div>`;
+        }).join('');
+    }
+
+    function setAll(val) {
+        Object.keys(AC).forEach(k => AC[k].instructions.forEach((x, i) => { if (!x.na) store.set(`ins_${k}_${i}`, val); }));
+        renderInstructions();
+    }
+
+    document.addEventListener('click', ev => {
+        const t = ev.target;
+        if (t.dataset && t.dataset.preview) {
+            const k = t.dataset.preview, box = $('prev-' + k);
+            if (box.innerHTML) { box.innerHTML = ''; t.textContent = '🔍 Preview here'; }
+            else { box.innerHTML = `<iframe src="${AC[k].file}" title="${AC[k].title}"></iframe>`; t.textContent = '✖ Close preview'; }
+        } else if (t.dataset && t.dataset.ins) {
+            document.querySelectorAll('.pill[data-ins]').forEach(b => b.classList.toggle('active', b === t));
+            onlyImp = t.dataset.ins === 'imp';
+            renderInstructions();
+        } else if (t.id === 'btnMarkAll') setAll('true');
+        else if (t.id === 'btnResetAll') setAll('false');
+    });
+    document.addEventListener('change', ev => {
+        const t = ev.target;
+        if (t.dataset && t.dataset.read) {
+            const [k, i] = t.dataset.read.split(':');
+            store.set(`ins_${k}_${i}`, t.checked);
+            renderInstructions();
+        } else if (t.dataset && t.dataset.prep) {
+            const [k, i] = t.dataset.prep.split(':');
+            store.set(`ac_${k}_${i}`, t.checked);
+        }
+    });
+
+    renderAdmitCards();
+    renderGlance();
+    renderInstructions();
 
     document.querySelectorAll('.pill[data-prog]').forEach(btn => btn.addEventListener('click', () => {
         document.querySelectorAll('.pill[data-prog]').forEach(b => b.classList.remove('active'));
