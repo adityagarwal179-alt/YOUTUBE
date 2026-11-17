@@ -8,254 +8,208 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --bg: #090d16; 
-            --card-bg: rgba(22, 28, 45, 0.7); 
-            --card-border: rgba(255, 255, 255, 0.08); 
-            --accent: #00f2ff; 
+        :root {
+            --bg: #090d16;
+            --card-bg: rgba(22, 28, 45, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent: #00f2ff;
             --accent-gradient: linear-gradient(135deg, #00f2ff, #0066ff);
             --expired: #ff4757;
             --success: #2ed573;
+            --warning: #ff9f43;
             --text-main: #f1f2f6;
             --text-muted: #a4b0be;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: var(--bg); 
-            color: var(--text-main); 
-            min-height: 100vh;
-            padding: 40px 20px; 
-            line-height: 1.6;
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-main); min-height: 100vh; padding: 40px 20px; line-height: 1.6; }
+        .container { max-width: 1050px; margin: 0 auto; }
+        .header-title { text-align: center; font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 30px; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .container { max-width: 950px; margin: 0 auto; }
-        
-        .header-title { 
-            text-align: center; 
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px; 
-            margin-bottom: 30px; 
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
+        .glass-card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: 16px; padding: 24px; margin-bottom: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: var(--text-muted); gap: 10px; flex-wrap: wrap; }
+        .progress-bar-bg { width: 100%; height: 10px; background: rgba(255,255,255,0.05); border-radius: 20px; overflow: hidden; border: 1px solid var(--card-border); }
+        .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #00f2ff, #2ed573); box-shadow: 0 0 12px rgba(0,242,255,0.4); transition: width .8s ease-in-out; }
 
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
+        .alert { background: rgba(255,71,87,0.12); border: 1px solid rgba(255,71,87,0.45); border-left: 4px solid var(--expired); border-radius: 12px; padding: 14px 18px; margin-bottom: 24px; font-size: 0.88rem; }
+        .alert strong { color: var(--expired); display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .5px; font-size: .8rem; }
+        .alert[hidden] { display: none; }
 
-        .progress-bar-bg {
-            width: 100%;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--card-border);
-        }
+        .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+        .pill { background: var(--card-bg); color: var(--text-muted); border: 1px solid var(--card-border); padding: 7px 16px; border-radius: 20px; font-size: .8rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s ease; }
+        .pill:hover { color: #fff; border-color: var(--accent); }
+        .pill.active { background: rgba(0,242,255,0.12); color: var(--accent); border-color: rgba(0,242,255,0.4); }
+        .spacer { flex: 1; }
 
-        .progress-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #00f2ff, #2ed573);
-            box-shadow: 0 0 12px rgba(0, 242, 255, 0.4);
-            transition: width 0.8s ease-in-out;
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-            border-radius: 16px;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            background: var(--card-bg); 
-            backdrop-filter: blur(12px);
-            text-align: left;
-        }
-
-        th, td { padding: 16px 20px; font-size: 0.9rem; }
-
-        th { 
-            background: rgba(0, 0, 0, 0.4); 
-            color: var(--accent); 
-            text-transform: uppercase; 
-            font-size: 0.75rem; 
-            letter-spacing: 1.2px; 
-            border-bottom: 1px solid var(--card-border); 
-        }
-
-        td { 
-            color: var(--text-main); 
-            border-bottom: 1px solid var(--card-border); 
-            transition: background 0.2s ease;
-        }
-
+        .table-wrapper { overflow-x: auto; border-radius: 16px; border: 1px solid var(--card-border); box-shadow: 0 20px 40px rgba(0,0,0,0.4); margin-bottom: 24px; }
+        table { width: 100%; border-collapse: collapse; background: var(--card-bg); backdrop-filter: blur(12px); text-align: left; }
+        th, td { padding: 14px 18px; font-size: 0.88rem; vertical-align: top; }
+        th { background: rgba(0,0,0,0.4); color: var(--accent); text-transform: uppercase; font-size: 0.74rem; letter-spacing: 1.2px; border-bottom: 1px solid var(--card-border); white-space: nowrap; }
+        td { color: var(--text-main); border-bottom: 1px solid var(--card-border); transition: background .2s ease; }
         tbody tr:last-child td { border-bottom: none; }
-        tbody tr:hover:not(.completed-row) { background: rgba(255, 255, 255, 0.03); }
-        
-        .completed-row td {
-            text-decoration: line-through;
-            color: rgba(255, 255, 255, 0.25) !important;
-        }
+        tbody tr:hover:not(.completed-row) { background: rgba(255,255,255,0.03); }
+        .completed-row td:not(:last-child) { text-decoration: line-through; color: rgba(255,255,255,0.25) !important; }
+        .clash-row { background: rgba(255,71,87,0.07); }
+        .sub { display: block; font-size: 0.75rem; color: var(--text-muted); }
+        .nowrap { white-space: nowrap; }
 
-        .status-badge {
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            text-decoration: none !important;
-        }
+        .prog { font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 20px; white-space: nowrap; display: inline-block; }
+        .prog.bca { color: var(--accent); background: rgba(0,242,255,.08); border: 1px solid rgba(0,242,255,.25); }
+        .prog.pharm { color: var(--success); background: rgba(46,213,115,.08); border: 1px solid rgba(46,213,115,.25); }
 
-        .status-active { 
-            background: rgba(0, 242, 255, 0.1); 
-            color: var(--accent); 
-            border: 1px solid rgba(0, 242, 255, 0.2);
-        }
+        .status-badge { font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px; text-decoration: none !important; white-space: nowrap; }
+        .status-active { background: rgba(0,242,255,0.1); color: var(--accent); border: 1px solid rgba(0,242,255,0.2); }
+        .status-live { background: rgba(255,159,67,0.12); color: var(--warning); border: 1px solid rgba(255,159,67,0.3); }
+        .status-done { background: rgba(255,71,87,0.1); color: var(--expired); border: 1px solid rgba(255,71,87,0.2); }
+        .clash-note { display: block; margin-top: 6px; font-size: .7rem; font-weight: 700; color: var(--expired); }
 
-        .status-done { 
-            background: rgba(255, 71, 87, 0.1); 
-            color: var(--expired); 
-            border: 1px solid rgba(255, 71, 87, 0.2);
-        }
+        details { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 4px 18px; margin-bottom: 24px; }
+        summary { cursor: pointer; padding: 14px 0; font-weight: 600; color: var(--accent); font-size: .9rem; }
+        details table { background: transparent; }
+        .mine td { background: rgba(46,213,115,0.08); font-weight: 600; }
 
-        .back-link { 
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            padding: 14px;
-            margin-top: 24px;
-            color: var(--accent); 
-            text-decoration: none; 
-            font-weight: 600; 
-            border-radius: 12px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-        }
+        .back-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; margin-top: 8px; color: var(--accent); text-decoration: none; font-weight: 600; border-radius: 12px; background: var(--card-bg); border: 1px solid var(--card-border); transition: all .3s ease; }
+        .back-link:hover { background: rgba(0,242,255,0.1); border-color: var(--accent); transform: translateY(-2px); }
 
-        .back-link:hover { 
-            background: rgba(0, 242, 255, 0.1);
-            border-color: var(--accent);
-            transform: translateY(-2px);
+        @media print {
+            body { background: #fff; color: #000; padding: 10px; }
+            .toolbar, .back-link, .progress-bar-bg { display: none !important; }
+            .glass-card, .table-wrapper, details, .alert { box-shadow: none; background: #fff; border-color: #999; }
+            th { color: #000; background: #eee; }
+            td, .sub { color: #000 !important; }
+            .header-title { -webkit-text-fill-color: #000; color: #000; background: none; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="header-title">Examination Schedule</h1>
-        
-        <div class="glass-card">
-            <div class="progress-header">
-                <span>Course Completion Status</span>
-                <span id="progress-text">0% Completed</span>
-            </div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progress-fill"></div>
-            </div>
-        </div>
+<div class="container">
+    <h1 class="header-title">Examination Schedule</h1>
 
-        <div class="table-wrapper">
-            <table id="exam-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Day</th>
-                        <th>Time</th>
-                        <th>Subject Code</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                    <tr data-date="2026-12-04" data-endtime="13:00"><td>04-12-2026</td><td>FRIDAY</td><td>10:00 AM - 1:00 PM</td><td>BCS131</td><td><span class="status-badge status-active">PENDING</span></td></tr>
-                    <tr data-date="2026-12-05" data-endtime="13:00"><td>05-12-2026</td><td>SATURDAY</td><td>10:00 AM - 1:00 PM</td><td>BCS040</td><td><span class="status-badge status-active">PENDING</span></td></tr>
-                    <tr data-date="2026-12-07" data-endtime="17:00"><td>07-12-2026</td><td>MONDAY</td><td>2:00 PM - 5:00 PM</td><td>MCS207</td><td><span class="status-badge status-active">PENDING</span></td></tr>
-                    <tr data-date="2026-12-08" data-endtime="17:00"><td>08-12-2026</td><td>TUESDAY</td><td>2:00 PM - 5:00 PM</td><td>MCS208</td><td><span class="status-badge status-active">PENDING</span></td></tr>
-                    <tr data-date="2027-01-13" data-endtime="13:00"><td>13-01-2027</td><td>WEDNESDAY</td><td>10:00 AM - 1:00 PM</td><td>BEVAE181</td><td><span class="status-badge status-active">PENDING</span></td></tr>
-                </tbody>
-            </table>
+    <div class="glass-card">
+        <div class="progress-header">
+            <span>Course Completion Status</span>
+            <span id="progress-text">0% Completed</span>
         </div>
-        
-        <a href="index.html" class="back-link">← Return to Master Vault</a>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
     </div>
 
-    <script>
-        function processDateSheet() {
-            const now = new Date();
-            const tbody = document.getElementById('table-body');
-            const rows = Array.from(tbody.querySelectorAll('tr'));
-            
-            let completedCount = 0;
-            const totalExams = rows.length;
-            const activeRows = [];
-            const completedRows = [];
+    <div class="alert" id="clashAlert" hidden></div>
 
-            rows.forEach(row => {
-                const dateStr = row.getAttribute('data-date');
-                const timeStr = row.getAttribute('data-endtime');
-                
-                if (dateStr && timeStr) {
-                    const examEndDateTime = new Date(`${dateStr}T${timeStr}:00`);
-                    const statusCell = row.cells[4];
+    <div class="toolbar">
+        <button class="pill active" data-prog="all">All</button>
+        <button class="pill" data-prog="bca">BCA · IGNOU</button>
+        <button class="pill" data-prog="pharm">Pharmacy · PSBTE</button>
+        <span class="spacer"></span>
+        <button class="pill" id="btnIcs">📅 Download .ics</button>
+        <button class="pill" id="btnPrint">🖨 Print</button>
+    </div>
 
-                    if (now > examEndDateTime) {
-                        row.classList.add('completed-row');
-                        statusCell.innerHTML = `<span class="status-badge status-done">Completed 🏁</span>`;
-                        completedCount++;
-                        completedRows.push(row);
-                    } else {
-                        row.classList.remove('completed-row');
-                        statusCell.innerHTML = `<span class="status-badge status-active">Pending</span>`;
-                        activeRows.push(row);
-                    }
-                }
-            });
+    <div class="table-wrapper">
+        <table id="exam-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Subject Code</th>
+                    <th>Programme</th>
+                    <th>Exam Centre</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+    </div>
 
-            tbody.innerHTML = '';
-            activeRows.forEach(row => tbody.appendChild(row));
-            completedRows.forEach(row => tbody.appendChild(row));
+    <details>
+        <summary>Reference: complete PSBTE Pharmacy date sheet — Nov 2026 (Evening, 1:30 PM – 4:30 PM)</summary>
+        <div class="table-wrapper" style="border:none; box-shadow:none; margin-bottom:12px;">
+            <table>
+                <thead><tr><th>Date</th><th>Day</th><th>Subject</th><th>Code</th><th>Year</th></tr></thead>
+                <tbody id="full-body"></tbody>
+            </table>
+        </div>
+        <p style="font-size:.78rem; color:var(--text-muted); padding-bottom:14px;">Highlighted rows are the papers listed on your admit card (3012 and 3014).</p>
+    </details>
 
-            const percentage = totalExams > 0 ? Math.round((completedCount / totalExams) * 100) : 0;
-            const bRemaining = totalExams - completedCount;
-            
-            document.getElementById('progress-fill').style.width = `${percentage}%`;
-            document.getElementById('progress-text').innerText = `${percentage}% Completed (${bRemaining} Remaining)`;
-        }
+    <a href="index.html" class="back-link">← Return to Master Vault</a>
+</div>
 
-        window.onload = function() {
-            processDateSheet();
-            setInterval(processDateSheet, 60000);
-        };
-    </script>
+<script src="exams.js"></script>
+<script>
+(function () {
+    'use strict';
+    const V = window.VAULT;
+    const body = document.getElementById('table-body');
+    const exams = V.sorted();
+    const clashList = V.clashes();
+    let filter = 'all';
+
+    function rowHTML(e, st, clashWith) {
+        const p = V.PROGRAMS[e.program];
+        const badge = st === 'completed'
+            ? '<span class="status-badge status-done">Completed 🏁</span>'
+            : st === 'live'
+                ? '<span class="status-badge status-live">In Progress</span>'
+                : '<span class="status-badge status-active">Pending</span>';
+        const note = clashWith.length ? `<span class="clash-note">⚠ Clashes with ${clashWith.map(V.label).join(', ')}</span>` : '';
+        const reach = p.reportMin ? `<span class="sub">Reach by ${V.fmt12(V.shiftTime(e.start, -p.reportMin))}</span>` : '';
+        return `<tr class="${st === 'completed' ? 'completed-row' : ''} ${clashWith.length ? 'clash-row' : ''}" data-program="${e.program}">
+            <td class="nowrap">${V.fmtDate(e.date)}</td>
+            <td>${V.dayName(e.date)}</td>
+            <td class="nowrap">${V.timeRange(e)}${reach}</td>
+            <td><b>${e.code}</b>${e.name ? `<span class="sub">${e.name}</span>` : ''}</td>
+            <td><span class="prog ${e.program}">${p.label}</span><span class="sub">${e.cls}</span></td>
+            <td>${p.centre}<a class="sub" style="color:var(--warning)" href="${p.map}" target="_blank" rel="noopener">Open in Maps ↗</a></td>
+            <td>${badge}${note}</td>
+        </tr>`;
+    }
+
+    function render() {
+        const now = new Date();
+        const items = exams.map(e => ({
+            e, st: V.status(e, now),
+            clash: clashList.filter(pair => pair.includes(e) && !pair.some(x => V.status(x, now) === 'completed')).map(pair => pair.find(x => x !== e))
+        }));
+        const active = items.filter(i => i.st !== 'completed');
+        const done = items.filter(i => i.st === 'completed');
+        const ordered = active.concat(done).filter(i => filter === 'all' || i.e.program === filter);
+        body.innerHTML = ordered.map(i => rowHTML(i.e, i.st, i.clash)).join('');
+
+        const total = items.length, completed = done.length;
+        const pct = total ? Math.round(completed / total * 100) : 0;
+        document.getElementById('progress-fill').style.width = pct + '%';
+        document.getElementById('progress-text').textContent = `${pct}% Completed (${total - completed} Remaining)`;
+
+        const box = document.getElementById('clashAlert');
+        const live = clashList.filter(([a, b]) => V.status(a, now) !== 'completed' && V.status(b, now) !== 'completed');
+        if (live.length) {
+            box.hidden = false;
+            box.innerHTML = '<strong>⚠ Timetable clash detected</strong>' + live.map(([a, b]) =>
+                `<div>${V.fmtDate(a.date)}: ${V.label(a)} (${V.timeRange(a)}) overlaps ${V.label(b)} (${V.timeRange(b)}). Contact your institute / IGNOU Regional Centre.</div>`).join('');
+        } else box.hidden = true;
+    }
+
+    // full pharmacy reference
+    document.getElementById('full-body').innerHTML = V.FULL_PSBTE.map(([d, subj, code, yr]) => {
+        const mine = V.EXAMS.some(e => e.program === 'pharm' && e.code === code);
+        return `<tr class="${mine ? 'mine' : ''}"><td class="nowrap">${V.fmtDate(d)}</td><td>${V.dayName(d)}</td><td>${subj}</td><td>${code}</td><td>${yr}</td></tr>`;
+    }).join('');
+
+    document.querySelectorAll('.pill[data-prog]').forEach(btn => btn.addEventListener('click', () => {
+        document.querySelectorAll('.pill[data-prog]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filter = btn.dataset.prog;
+        render();
+    }));
+    document.getElementById('btnIcs').addEventListener('click', () => {
+        const list = exams.filter(e => filter === 'all' || e.program === filter);
+        V.downloadICS(list, 'exam_schedule.ics');
+    });
+    document.getElementById('btnPrint').addEventListener('click', () => window.print());
+
+    render();
+    setInterval(render, 30000);
+})();
+</script>
 </body>
 </html>
