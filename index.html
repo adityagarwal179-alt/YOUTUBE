@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Academic Vault</title>
+<script>
+(function () {
+    function show(m) {
+        var d = document.getElementById('fatal');
+        if (!d) {
+            d = document.createElement('div'); d.id = 'fatal';
+            d.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#b00020;color:#fff;padding:12px 16px;font:600 14px Inter,Arial,sans-serif;line-height:1.4';
+            (document.body || document.documentElement).appendChild(d);
+        }
+        d.textContent = '\u26A0 ' + m;
+    }
+    window.__showFatal = show;
+    window.addEventListener('error', function (e) {
+        if (e.target && e.target.tagName === 'SCRIPT') { show('Could not load ' + e.target.getAttribute('src') + '. Upload it next to this page, then hard-refresh (Ctrl+F5).'); }
+        else if (e.message) { show('Page error: ' + e.message + '. Make sure exams.js (latest) and the admit_cards folder are uploaded next to this page, then hard-refresh (Ctrl+F5).'); }
+    }, true);
+})();
+</script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,6 +52,7 @@
         h1 { text-align: center; font-size: 2.2rem; font-weight: 700; margin-bottom: 16px; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
         /* Next exam hero */
+        .hero[hidden] { display: none; }
         .hero { background: linear-gradient(135deg, rgba(0,242,255,0.12), rgba(0,102,255,0.12)); border: 1px solid rgba(0,242,255,0.3); border-radius: 16px; padding: 20px 24px; margin-bottom: 20px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
         .hero-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); font-weight: 600; }
         .hero-title { font-size: 1.35rem; font-weight: 700; }
@@ -170,13 +190,13 @@
     <div class="venues" id="venues"></div>
 
     <div class="controls-bar">
-        <input type="text" id="searchInput" class="search-input" placeholder="Search by subject code or name...">
-        <select id="programFilter" class="filter-select">
+        <input type="text" id="searchInput" autocomplete="off" class="search-input" placeholder="Search by subject code or name...">
+        <select id="programFilter" autocomplete="off" class="filter-select">
             <option value="all">All Programmes</option>
             <option value="bca">BCA · IGNOU</option>
             <option value="pharm">Pharmacy · PSBTE</option>
         </select>
-        <select id="statusFilter" class="filter-select">
+        <select id="statusFilter" autocomplete="off" class="filter-select">
             <option value="all">All Exams</option>
             <option value="pending">Pending</option>
             <option value="completed">Completed</option>
@@ -187,10 +207,14 @@
     <div class="empty" id="emptyMsg">No exams match your filters.</div>
 </div>
 
-<script src="exams.js"></script>
+<script src="exams.js?v=3"></script>
 <script>
 (function () {
     'use strict';
+    if (!window.VAULT || window.VAULT.VERSION < 3 || !window.VAULT.ADMIT_CARDS) {
+        window.__showFatal('exams.js is missing or outdated. Upload the latest exams.js (same folder as this page) and hard-refresh with Ctrl+F5.');
+        return;
+    }
     const V = window.VAULT;
     const $ = id => document.getElementById(id);
     const store = V.store;
