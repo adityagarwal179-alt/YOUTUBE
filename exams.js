@@ -247,6 +247,6 @@ window.VAULT = (function () {
         set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} }
     };
 
-    return { PROGRAMS, EXAMS, ADMIT_CARDS, GLANCE, at, examStart, examEnd, sorted, byId, status, clashes,
+    return { VERSION: 3, PROGRAMS, EXAMS, ADMIT_CARDS, GLANCE, at, examStart, examEnd, sorted, byId, status, clashes,
              fmt12, fmtDate, dayName, timeRange, label, fmtDur, shiftTime, googleCalUrl, downloadICS, store };
 })();
