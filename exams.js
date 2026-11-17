@@ -65,21 +65,6 @@ window.VAULT = (function () {
         { id: '3014',     code: '3014',     name: 'Human Anatomy & Physiology',   program: 'pharm', date: '2026-12-08', start: '13:30', end: '16:30', cls: '1st Year', topics: [] }
     ];
 
-    // Complete PSBTE Pharmacy date sheet (reference only; your papers are 3012 & 3014)
-    const FULL_PSBTE = [
-        ['2026-11-26', 'Pharmacology', '3031', '2nd'],
-        ['2026-11-27', 'Pharmaceutical Chemistry', '3012', '1st'],
-        ['2026-11-30', 'Community Pharmacy & Management', '3032', '2nd'],
-        ['2026-12-01', 'Pharmaceutics', '3011', '1st'],
-        ['2026-12-02', 'Hospital & Clinical Pharmacy', '3035', '2nd'],
-        ['2026-12-03', 'Social Pharmacy', '3015', '1st'],
-        ['2026-12-04', 'Pharmacy Law & Ethics', '3036', '2nd'],
-        ['2026-12-07', 'Bio Chemistry & Clinical Pathology', '3033', '2nd'],
-        ['2026-12-08', 'Human Anatomy & Physiology', '3014', '1st'],
-        ['2026-12-09', 'Pharmacotherapeutics', '3034', '2nd'],
-        ['2026-12-10', 'Pharmacognosy', '3013', '1st']
-    ];
-
     const at = (d, t) => new Date(`${d}T${t}:00${TZ}`);
     const examStart = e => at(e.date, e.start);
     const examEnd = e => at(e.date, e.end);
@@ -179,11 +164,89 @@ window.VAULT = (function () {
         setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     }
 
+
+    /* ---------- Admit cards (PDFs live in the admit_cards folder) ---------- */
+    const pharmFirst = EXAMS.filter(e => e.program === 'pharm').sort((a, b) => examStart(a) - examStart(b))[0];
+    const pharmReach = fmt12(shiftTime(pharmFirst.start, -30));
+    const ADMIT_CARDS = {
+        pharm: {
+            title: 'PSBTE Admit Card — Nov 2026 Examination',
+            file: 'admit_cards/PSBTE_Admit_Card_242071901229.pdf',
+            downloadName: 'PSBTE_Admit_Card_242071901229.pdf',
+            details: [
+                ['Student Name', 'ADITYA AGARWAL'],
+                ["Father's Name", 'RAJEEV AGARWAL'],
+                ['Registration No.', '242071901229'],
+                ['Institute', 'Chandigarh Pharmacy College, Jhanjeri, Mohali'],
+                ['Issued by', 'Punjab State Board of Technical Education & Industrial Training, Plot No. 1A, Sector 36A, Chandigarh – 160036'],
+                ['Exam Centre', 'GOVT. POLYTECHNIC COLLEGE, KHOONI MAZRA']
+            ],
+            before: [
+                'Print the admit card (it is the entry pass — no admit card, no entry)',
+                'Paste a recent photograph and get it attested by the Principal',
+                'Sign as candidate in the space provided',
+                'Get the Principal\'s signature with the institution\'s seal',
+                'Check that your name, subjects and centre match your exam form',
+                'Keep your original photo Registration Card ready'
+            ],
+            instructions: [
+                { imp: true,  t: 'Appear <b>only in the papers/subjects specified in the admit card</b>. Make sure the subjects listed are according to the examination form you filled.' },
+                { imp: true,  t: 'Follow the invigilator\'s instructions when filling details on the answer sheet. <b>Fill the circles/ovals with the same four-digit subject code</b> as on the admit card (3012 and 3014) — otherwise your <b>result may be declared late</b>.' },
+                { imp: true,  t: 'You will <b>not be allowed to enter the examination centre without the admit card</b>.' },
+                { imp: true,  t: 'Bring the <b>original photo Registration Card</b> issued by the Board to the venue of the examination.' },
+                { imp: false, t: 'Visit the Board\'s websites, <b>www.punjabteched.net</b> and <b>www.punjabteched.com</b>, regularly for the latest information related to the examination.' },
+                { imp: true,  t: 'Reach the Examination Centre <b>30 minutes before the exam time</b> (' + pharmReach + ' for your ' + fmt12(pharmFirst.start) + ' papers).' },
+                { imp: false, t: 'Enter the required details in the <b>Attendance Sheet</b> and put your <b>signature</b>.' },
+                { imp: true,  t: '<b>Mobile phones and other electronic devices are not permitted</b> inside the examination centre. If a candidate adopts <b>unfair means</b> or indulges in any unfair practice, the candidature will be <b>cancelled</b> and action taken as per the examination rules.' },
+                { imp: false, t: 'For any problem in the details on the admit card, <b>contact your Institute</b>.' },
+                { imp: true,  t: '<b>Declaration:</b> by signing, you confirm all particulars are correct and true. If any particular is found incorrect, your <b>result may be cancelled</b>.' }
+            ]
+        },
+        bca: {
+            title: 'IGNOU Hall Ticket — December 2026 TEE',
+            file: 'admit_cards/IGNOU_Hall_Ticket_2552739030.pdf',
+            downloadName: 'IGNOU_Hall_Ticket_2552739030.pdf',
+            details: [
+                ['Student Name', 'ADITYA AGARWAL'],
+                ['Enrollment No.', '2552739030'],
+                ['Programme', 'BCA_NEWOL — Bachelor of Computer Applications'],
+                ['Examination', '2026-DECEMBER-THEORY, Term End Examination (TEE)'],
+                ['Mode of Exam', 'Pen and Paper Test'],
+                ['Exam Centre', '0601 : UIET, Block-2, PU, Sector 25, Chandigarh — Univ. Institute of Engg. & Tech. (UIET), Academic Block-2, Panjab University, South Campus, Sector 25, Chandigarh – 160014'],
+                ['Printed on', '06-11-2026, 08:07 PM']
+            ],
+            before: [
+                'Print the hall ticket (keep a spare copy)',
+                'Check that the photo on it is visible (yours is)',
+                'Check your enrollment number, course codes, dates and centre',
+                'Carry a valid photo ID along with the hall ticket',
+                'Visit the centre once before the exam day to know the way'
+            ],
+            instructions: [
+                { imp: true,  t: 'The <b>duration of the examination is mentioned on the first page of the question paper</b>.' },
+                { imp: true,  t: 'This Hall Ticket is <b>valid subject to fulfilling the conditions mentioned in Para No. 18</b>. That paragraph is not on the copy you uploaded (it is page 1 of 4) — read the full hall ticket on the IGNOU portal.' },
+                { imp: true,  t: 'If the photo is <b>not visible</b> on the hall ticket, <b>paste your latest passport-size photograph, self-attested</b>, to appear in the December 2026 TEE. <i>(Your photo is visible, so this should not apply to you.)</i>' },
+                { imp: false, t: 'The <b>dates for practical exams</b> will be communicated separately by the concerned <b>Regional Centre</b>.' },
+                { imp: false, na: true, t: '<b>DECE learners only:</b> DECE01, DECE02 and DECE03 exams are OMR based, with no change of centre. <i>Not applicable to BCA.</i>' }
+            ]
+        }
+    };
+
+    const GLANCE = [
+        { icon: '🎫', title: 'No admit card = no entry', text: 'PSBTE will not let you into the centre without the printed admit card.' },
+        { icon: '🪪', title: 'Original photo Registration Card', text: 'Carry the original card issued by the Board (PSBTE).' },
+        { icon: '⏰', title: 'Reach 30 minutes early', text: 'PSBTE papers start at ' + fmt12(pharmFirst.start) + ' — be at the centre by ' + pharmReach + '.' },
+        { icon: '🔢', title: 'Fill the 4-digit subject code', text: 'Same code as the admit card on the answer sheet: 3012 / 3014. A mismatch can delay your result.' },
+        { icon: '📵', title: 'No phones or electronics', text: 'Not allowed inside the centre. Unfair means = candidature cancelled.' },
+        { icon: '✍️', title: 'Photo, signatures, seal', text: 'PSBTE card needs your photo attested by the Principal, your signature, and the Principal\'s signature with seal.' },
+        { icon: '⚠️', title: 'Clash on 08-12-2026', text: '3014 (1:30–4:30 PM) overlaps MCS208 (2:00–5:00 PM). Talk to your institute and IGNOU now.' }
+    ];
+
     const store = {
         get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
         set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} }
     };
 
-    return { PROGRAMS, EXAMS, FULL_PSBTE, at, examStart, examEnd, sorted, byId, status, clashes,
+    return { PROGRAMS, EXAMS, ADMIT_CARDS, GLANCE, at, examStart, examEnd, sorted, byId, status, clashes,
              fmt12, fmtDate, dayName, timeRange, label, fmtDur, shiftTime, googleCalUrl, downloadICS, store };
 })();
